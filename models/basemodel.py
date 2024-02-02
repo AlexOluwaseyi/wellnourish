@@ -17,10 +17,14 @@ class BaseModel():
     """
     def __init__(self):
         """Initializer for BaseModel class"""
-        id = str(uuid4)
-        created_at = datetime.now
-        updated_at = datetime.now
+        self.id =str(uuid4)
+        self.created_at = datetime.now
+        self.updated_at = datetime.now
 
     def todict():
         """Method to convert BaseModel class to dict"""
-        pass
+        return {
+            'id' : self.id, 
+            'created_at' : self.created_at,
+            'updated_at' : self.updated_at
+        }
