@@ -30,7 +30,7 @@ Engineering. They are tech pacemaker and future changemakers in the Tech
 Industry within and outside the shores of the country
 
 ## Project Sketch
-![Sketch for Mobile and Desktop App](https://imgur.com/a/j12l9RK)
+![Sketch for Mobile and Desktop App](https://github.com/AlexOluwaseyi/wellnourish/assets/120264911/71dc252e-b73e-450a-b43c-6824ff233ed2)
 
 ## Project Tools
 - Python (Backend)
