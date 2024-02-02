@@ -24,7 +24,7 @@ class BaseModel():
     def todict(self):
         """Method to convert BaseModel class to dict"""
         return {
-            'id' : self.id, 
+            'id' : self.id,
             'created_at' : self.created_at,
             'updated_at' : self.updated_at
         }
