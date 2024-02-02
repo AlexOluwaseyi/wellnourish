@@ -22,7 +22,7 @@ eating unhealthy foods, wellnourish is just the right place to be.
 This project is done by Jesufemi and Oluwaseyi, Software Engineering 
 enthusiasts who seek to bridge the gap between health and tech. BRING
 TECH TO HEALTH & HEALTH TO TECH.
-- Jesufemi OMIOGUN [GitHub](https://github.com/omitogunjesufemi)
+- Jesufemi OMITOGUN [GitHub](https://github.com/omitogunjesufemi)
 - Oluwaseyi AKINTOLA [GitHub](https://github.com/alexoluwaseyi)
 
 Both Jesufemi and Oluwaseyi are graduates of Electronics and Electrical
