@@ -10,7 +10,8 @@ class User(BaseModel):
     """
     User class model definition
     """
-    def __init__(self, name):
+    name = ""
+
+    def __init__(self, *args, **kwargs):
         """Initializer for User class"""
-        id = self.id
-        name = name
+        super().__init__(*args, **kwargs)

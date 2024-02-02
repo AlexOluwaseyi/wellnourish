@@ -91,3 +91,32 @@ class TestBaseModel(unittest.TestCase):
                            'name': 'My First Model', 'my_number': 89,
                            '__class__': 'BaseModel'}
         self.assertEqual(self.base_model.to_dict(), expected_output)
+
+    def test_base_model_with_kwargs_parameter(self):
+        """
+        Checking if BaseModel works with kwargs parameter
+        """
+        base_dict = self.base_model.to_dict()
+        new_base_model = BaseModel(**base_dict)
+        self.assertTrue(new_base_model.id)
+        self.assertTrue(new_base_model.created_at)
+        self.assertTrue(new_base_model.updated_at)
+
+    def test_base_model_created_at_and_updated_at_is_datetime_object(self):
+        """
+        Checking if BaseModel works with kwargs parameter,and
+        created_at and updated_at is datetime object
+        """
+        base_dict = self.base_model.to_dict()
+        new_base_model = BaseModel(**base_dict)
+        self.assertTrue(type(new_base_model.created_at) is datetime)
+        self.assertTrue(type(new_base_model.updated_at) is datetime)
+
+    def test_base_model_with_kwargs_parameter_are_diff_obj(self):
+        """
+        Checking if BaseModel works with kwargs parameter,
+        and the two objects are not the same
+        """
+        base_dict = self.base_model.to_dict()
+        new_base_model = BaseModel(**base_dict)
+        self.assertTrue(new_base_model is not self.base_model)
