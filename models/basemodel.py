@@ -21,7 +21,7 @@ class BaseModel():
         self.created_at = datetime.now
         self.updated_at = datetime.now
 
-    def todict():
+    def todict(self):
         """Method to convert BaseModel class to dict"""
         return {
             'id' : self.id, 
