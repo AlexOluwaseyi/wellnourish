@@ -3,7 +3,7 @@
 ## About
 Wellnourish is an API based python web application that has been designed to
 help people to eat well, and healthily, based on factors includig (but not 
-limited to) health records, financial budgets, sweet tongue, adventurous 
+limited to) health records, financial budgets, sweet-tooth, adventurous 
 eaters, etc. 
 If you would like to know the recipe for the food in your favourite TV show, 
 all you need is Wellnourish.
