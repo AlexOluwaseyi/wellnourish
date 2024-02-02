@@ -1,12 +1,9 @@
 #!/usr/bin/python3
-
 """
 User Model for all app users
-Inherits from BaseModel 
-
+Inherits from BaseModel
 """
-
-from models.basemodel import BaseModel
+from models.base_model import BaseModel
 
 
 class User(BaseModel):
@@ -16,6 +13,4 @@ class User(BaseModel):
     def __init__(self, name):
         """Initializer for User class"""
         id = self.id
-        name = name.name
-        BaseModel.__init__(self)
-    
+        name = name

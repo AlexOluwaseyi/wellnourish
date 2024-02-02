@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """
 BaseModel for WellNourish project.
 
@@ -28,9 +27,9 @@ class BaseModel():
 
     def save(self):
         """Updates the attribute 'updated_at' with the current datetime"""
-        self.update_at = datetime.now()
+        self.updated_at = datetime.now()
 
-    def todict(self):
+    def to_dict(self):
         """Method to convert BaseModel class to dict"""
         new_dict = self.__dict__.copy()
         new_dict["__class__"] = self.__class__.__name__
