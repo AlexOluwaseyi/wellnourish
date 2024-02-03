@@ -2,6 +2,7 @@
 This module contains the various test for the BaseModel to ascertain
 the functionality of the model
 """
+from time import sleep
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
@@ -41,6 +42,7 @@ class TestBaseModel(unittest.TestCase):
         """
         Checks that the created_at is not same with other instances
         """
+        sleep(2)
         base_model_2 = BaseModel()
         self.assertNotEqual(self.base_model.created_at, base_model_2.created_at)
 
@@ -54,6 +56,7 @@ class TestBaseModel(unittest.TestCase):
         """
         Checks that the updated_at is not same with other instances
         """
+        sleep(2)
         base_model_2 = BaseModel()
         self.assertNotEqual(self.base_model.updated_at,
                             base_model_2.updated_at)
@@ -63,6 +66,7 @@ class TestBaseModel(unittest.TestCase):
         Ascertain save() changes updated_at
         """
         old_updated_at = self.base_model.updated_at
+        sleep(2)
         self.base_model.save()
         self.assertNotEqual(self.base_model.updated_at, old_updated_at)
 

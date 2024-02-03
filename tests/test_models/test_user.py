@@ -3,9 +3,11 @@ This module contains the various test for the User to ascertain
 the functionality of the model
 """
 import unittest
+from unittest.mock import patch
 from models.user import User
 from datetime import datetime
 from models.base_model import BaseModel
+import hashlib
 
 
 class TestUser(unittest.TestCase):
@@ -32,3 +34,38 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.user, "id"))
         self.assertTrue(hasattr(self.user, "created_at"))
         self.assertTrue(hasattr(self.user, "updated_at"))
+        self.assertTrue(hasattr(self.user, "fname"))
+        self.assertTrue(hasattr(self.user, "lname"))
+        self.assertTrue(hasattr(self.user, "username"))
+        self.assertTrue(hasattr(self.user, "password"))
+    
+    def test_set_username(self):
+        self.user.set_username("john")
+        self.assertEqual(self.user.get_username(), "john")
+
+    def test_set_names(self):
+        self.user.set_names("John", "Doe")
+        self.assertEqual(self.user.get_names(), "John Doe")
+
+    def test_change_password_with_input(self):
+        with patch('builtins.input', return_value='newpassword'):
+            self.user.change_password()
+        hashed_password = hashlib.sha256('newpassword'.encode()).hexdigest()
+        self.assertEqual(self.user.password, hashed_password)
+
+    def test_change_password_with_argument(self):
+        self.user.change_password("newpassword")
+        hashed_password = hashlib.sha256('newpassword'.encode()).hexdigest()
+        self.assertEqual(self.user.password, hashed_password)
+
+    def test_reset_password(self):
+        self.user.change_password("newpassword")
+        hashed_password = hashlib.sha256('newpassword'.encode()).hexdigest()
+        self.assertEqual(self.user.password, hashed_password)
+        self.user.reset_pasword()
+        self.assertNotEqual(self.user.password, hashed_password)
+        self.assertEqual(self.user.password, self.user.default_password)
+
+
+if __name__ == '__main__':
+    unittest.main()
