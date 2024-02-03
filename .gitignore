@@ -3,3 +3,4 @@
 **/.*.swo
 venv/
 wellnourish.db
+test.db

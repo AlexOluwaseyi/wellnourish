@@ -2,6 +2,7 @@
 """
 Contains the class DBStorage
 """
+import os
 import models
 from models.base_model import BaseModel, Base
 from models.user import User
@@ -18,7 +19,11 @@ class DBStorage:
 
     def __init__(self):
         """Initializes the DB storage class"""
-        self.__engine = create_engine("sqlite:///wellnourish.db")
+        if os.getenv("WN_ENV") == "test":
+            self.__engine = create_engine("sqlite:///test.db")
+            Base.metadata.drop_all(self.__engine)
+        else:
+            self.__engine = create_engine("sqlite:///wellnourish.db")
 
     def all(self, cls=None):
         """Returns object dictionary of the data in database"""
@@ -26,8 +31,9 @@ class DBStorage:
         if cls is None or cls is User:
             objs = self.__session.query(cls).all()
             for obj in objs:
-                key = obj.__class__.__name__ + '.' + obj.id
-                all_dict[key] = obj
+                if obj and hasattr(obj, 'id'):
+                    key = "{}.{}".format(obj.__class__.__name__, obj.id)
+                    all_dict[key] = obj
         return (all_dict)
 
     def new(self, obj):

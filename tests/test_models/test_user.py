@@ -38,7 +38,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.user, "lname"))
         self.assertTrue(hasattr(self.user, "username"))
         self.assertTrue(hasattr(self.user, "password"))
-    
+
     def test_set_username(self):
         self.user.set_username("john")
         self.assertEqual(self.user.get_username(), "john")

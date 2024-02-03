@@ -72,7 +72,8 @@ class TestBaseModel(unittest.TestCase):
         sleep(2)
         self.base_model.save()
         self.assertNotEqual(self.base_model.updated_at, old_updated_at)
-
+        self.assertTrue(mock_db.new.called)
+        self.assertTrue(mock_db.save.called)
 
     def test_string_rep_returns_expected_format(self):
         """
