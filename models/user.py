@@ -5,7 +5,6 @@ Inherits from BaseModel
 """
 
 from models.base_model import BaseModel
-from uuid import uuid4
 import hashlib
 
 
@@ -13,67 +12,65 @@ class User(BaseModel):
     """
     User class model definition
     """
-    fname = None
-    lname = None
-    email = None
-    username= None
-    default_password = '1234567890'
-    password = '1234567890'
+    fname: str = None
+    lname: str = None
+    email: str = None
+    username: str = None
+    default_password: str = '1234567890'
+    password: str = '1234567890'
     
+
+    def __init__(self, *args, **kwargs):
+        """Initializes User Object"""
+        super().__init__(*args, **kwargs)
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    """setattr(self, key, value)"""
+                    self.fname = kwargs.get("fname", self.fname)
+                    self.lname = kwargs.get("lname", self.lname)
+                    self.username = kwargs.get("username", self.username)
+                    self.email = kwargs.get("email", self.email)
+                    self.password = kwargs.get("password", self.password)
     '''
     def __init__(self, *args, **kwargs):
-        """Initializer for User class"""
-        super().__init__(*args, **kwargs)
-        self.fname = input("Enter First name: ")
-        self.lname = input("Enter Last name: ")
-        self.username = input("Choose usesrname: ")
-        self.email = email
-        self.password = password
-    '''
-    
-    def __init__(self):
         super().__init__()
-
-    def set_username(self, username=None):
-        """Sets username for user"""
-        if username is not None:
-            self.username = username
-        else:
-            self.username = input("Select a username: ")
+        if kwargs:
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    setattr(self, key, value)
+                    """
+                    self.fname = kwargs.get("fname", self.fname)
+                    self.lname = kwargs.get("lname", self.lname)
+                    self.username = kwargs.get("username", self.username)
+                    self.email = kwargs.get("email", self.email)
+                    self.password = kwargs.get("password", self.password)
+                    """
+    '''
 
     def get_username(self):
         """Gets the user's username"""
         return self.username
-
-    def set_names(self, fname=None, lname=None):
-        """Sets the user's names - First Name and Last Name"""
-        if fname is not None:
-            self.fname = fname
-        else:
-            self.fname = input("Enter your First name: ")
-
-        if lname is not None:
-            self.lname = lname
-        else:
-            self.lname = input("Enter your Last name: ")
+    
+    def get_email(self):
+        """Gets the user's username"""
+        return self.email
 
     def get_names(self):
         """Gets the user's first name and last name - formatted"""
         return "{} {}".format(self.fname, self.lname)
     
-    def reset_pasword(self):
+    def reset_password(self):
         """Reset password to default password '1234567890'"""
         self.password = self.default_password
 
-    def change_password(self, new_password=None):
+    def change_password(self, new_password):
         """Change the user's password. 
         If password is same as default password and password is not 
         provided as an argument, prompt user to provide new password
         
-        New password is hashed with sha256 encoding for security."""
-        if self.password == self.default_password and new_password == None:
-            new_password = input('Enter a new password: ')
-        elif self.password != self.default_password and new_password == None:
-            new_password = input('Enter a new password: ')
+        New password is hashed with sha256 encoding for security.
+        """
+
         hashed_password = hashlib.sha256(new_password.encode()).hexdigest()
         self.password = hashed_password
