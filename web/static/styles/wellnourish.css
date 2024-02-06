@@ -7,6 +7,15 @@
     margin-top: 15px;
 }
 
+.search-box input {
+    position: absolute;
+    width: 70%;
+    border: none;
+    height: 100%;
+    margin-left: 45px;
+}
+
+
 .landing .recipe-list {
     margin-top: 25px;
 }
