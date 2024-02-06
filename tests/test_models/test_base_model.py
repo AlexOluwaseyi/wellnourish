@@ -4,6 +4,8 @@ the functionality of the model
 """
 from time import sleep
 import unittest
+import models
+from unittest import mock
 from models.base_model import BaseModel
 from datetime import datetime
 
@@ -61,7 +63,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(self.base_model.updated_at,
                             base_model_2.updated_at)
 
-    def test_base_model_save_changes_updated_at(self):
+    @mock.patch('models.storage')
+    def test_base_model_save_changes_updated_at(self, mock_db):
         """
         Ascertain save() changes updated_at
         """
@@ -69,6 +72,8 @@ class TestBaseModel(unittest.TestCase):
         sleep(2)
         self.base_model.save()
         self.assertNotEqual(self.base_model.updated_at, old_updated_at)
+        self.assertTrue(mock_db.new.called)
+        self.assertTrue(mock_db.save.called)
 
     def test_string_rep_returns_expected_format(self):
         """

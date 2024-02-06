@@ -8,14 +8,22 @@ for all other models, to ease scalability.
 """
 from uuid import uuid4
 from datetime import datetime
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, String, DateTime
+import models
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
+Base = declarative_base()
 
 
-class BaseModel():
+class BaseModel:
     """
     BaseModel class definition
     """
+    id = Column(String(60), primary_key=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow)
+
     def __init__(self, *args, **kwargs):
         """Initializer for BaseModel class"""
         if kwargs:
@@ -45,6 +53,8 @@ class BaseModel():
     def save(self):
         """Updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.now()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Method to convert BaseModel class to dict"""

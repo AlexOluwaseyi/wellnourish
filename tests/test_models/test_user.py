@@ -38,7 +38,7 @@ class TestUser(unittest.TestCase):
         self.assertTrue(hasattr(self.user, "lname"))
         self.assertTrue(hasattr(self.user, "username"))
         self.assertTrue(hasattr(self.user, "password"))
-    
+
     def test_change_password_with_argument(self):
         self.user.change_password("newpassword")
         hashed_password = hashlib.sha256('newpassword'.encode()).hexdigest()

@@ -1,3 +1,6 @@
 **/__pycache__/
 **/.*.swp
 **/.*.swo
+venv/
+wellnourish.db
+test.db

@@ -4,14 +4,24 @@ User Model for all app users
 Inherits from BaseModel
 """
 
-from models.base_model import BaseModel
+from models.base_model import BaseModel, Base
+from uuid import uuid4
 import hashlib
+import sqlalchemy
+from sqlalchemy import Column, String
 
 
-class User(BaseModel):
+class User(BaseModel, Base):
     """
     User class model definition
     """
+    __tablename__ = "users"
+
+    fname = Column(String(128), nullable=True)
+    lname = Column(String(128), nullable=True)
+    email = Column(String(128), nullable=False)
+    username = Column(String(128), nullable=False)
+    password = Column(String(128), nullable=False, default='1234567890')
 
     def __init__(self, *args, **kwargs):
         """Initializes User Object"""
