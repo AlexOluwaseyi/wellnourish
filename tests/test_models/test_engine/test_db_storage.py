@@ -28,12 +28,16 @@ class TestDBStorage(unittest.TestCase):
     def test_new_method(self):
         """Test that all returns a dictionary"""
         user = User()
+        user.email = "sale@wnourish.com"
+        user.username = "sales"
         models.storage.new(user)
         self.assertIn(user, models.storage._DBStorage__session.new)
 
     def test_save(self):
         """Test the save method"""
         usr = User()
+        usr.email = "sale@wnourish.com"
+        usr.username = "sales"
         models.storage.new(usr)
         models.storage.save()
         user_id = usr.id
@@ -43,6 +47,8 @@ class TestDBStorage(unittest.TestCase):
     def test_delete(self):
         """Test the delete method"""
         user = User()
+        user.email = "sale@wnourish.com"
+        user.username = "sales"
         models.storage.new(user)
         models.storage.save()
         models.storage.delete(user)
