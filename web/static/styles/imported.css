@@ -1122,7 +1122,9 @@ h4, h5, h6 {
 }
 
 body {
-    color: #2f2f2f
+    color: #2f2f2f;
+    margin: 0;
+    padding: 0;
 }
 
 a, .link {

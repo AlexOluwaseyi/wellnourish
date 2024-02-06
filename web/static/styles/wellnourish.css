@@ -1,0 +1,133 @@
+.landing .search-box {
+    position: relative;
+    height: 70px;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 50px;
+    margin-top: 15px;
+}
+
+.landing .recipe-list {
+    margin-top: 25px;
+}
+
+.landing .result-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #FF00;
+    height: 20px;
+    width: 100%;
+}
+
+.landing .result-tiles {
+    width: 100%;
+    margin-top: -5px;
+}
+
+.result-tiles ul {
+    column-count: 4;
+    justify-content: center;
+    padding: 0 20px;
+    margin-top: 1%;
+}
+
+.result-tiles li {
+    border: 1px solid #DDDDDD;
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 4px;
+
+}
+
+.result-tiles li .list-img {
+    width: 100%;
+    height: 70%;
+    background-image: url("../images/pexels-lumn-1410235.jpg");
+    background-size: cover;
+}
+
+.result-tiles li .list-title {
+    width: 100%;
+    height: 30%;
+    padding: 10px;
+}
+
+.result-tiles li .list-title h3 {
+    font-size: 15px;
+    margin: 0;
+    line-height: 20px;
+}
+
+.result-tiles li .list-title p {
+    font-size: 10px;
+    margin: 0;
+    line-height: 12px;
+}
+
+button {
+    position: absolute;
+    font-size: 15px;
+    background: #FF0000;
+    color: #FFFFFF;
+    height: 40px;
+    width: 10%;
+    border-style: none;
+    border-radius: 20px;
+    top: 20%;
+    right: 30px;
+}
+
+@media only screen and (max-width: 920px)
+{
+    .result-tiles ul {
+	display: flex;
+	flex-wrap: wrap;
+    }
+}
+
+
+@media screen and (min-width: 744px) and (max-width: 920px) {
+    .landing {
+	min-width: 744px;
+	max-width: 1024px;
+    }
+    .landing .search-box {
+	position: relative;
+	height: 50px;
+	width: 90%;
+	border: 1px solid #DDDDDD;
+	border-radius: 50px;
+	margin-top: 15px;
+	margin-right: auto;
+	margin-left: auto;
+    }
+
+    .landing .result-title,
+    .landing .result-tiles {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 20px;
+	width: 90%;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 10px;
+    }
+
+    button {
+	position: absolute;
+	font-size: 10px;
+	background: #FF0000;
+	color: #FFFFFF;
+	height: 30px;
+	width: 60px;
+	border-style: none;
+	border-radius: 25px;
+	top: 20%;
+	right: 30px;
+    }
+}

@@ -42,16 +42,18 @@ ul {
 
 
 .landing {
-  display: flex;
+  /**display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-image: url("../images/pexels-lumn-1410235.jpg");
+  /**background-image: url("../images/pexels-lumn-1410235.jpg");**/
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 25%;
-  height: 100vh;
+  max-width: 1000px;
+  margin: 30px auto;
   overflow: hidden !important;
+
 }
 
 .empty {

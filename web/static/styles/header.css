@@ -18,7 +18,8 @@ header {
 .site-logo {
   width: inherit;
   left: 0;
-  background: url("../images/logo.png") no-repeat center;
+  background: url("../images/icons/logo.jpg") no-repeat center;
+  background-size: cover;
 
 }
 
