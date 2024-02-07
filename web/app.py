@@ -25,9 +25,9 @@ def about():
     return render_template("about.html", title="About")
 
 @app.route("/login", strict_slashes=False)
-def about():
+def login():
     """WellNourish User Login Route"""
-    return render_template("login.html", title="About")
+    return render_template("login.html", title="Login")
 
 @app.route("/register", strict_slashes=False, methods=['GET', 'POST'])
 @app.route("/register.html", strict_slashes=False, methods=['GET', 'POST'])
@@ -47,6 +47,10 @@ def profile_setup():
     """WellNourish Profile Setup Route"""
     return render_template('profile_setup.html', title= "Complete Profile")
 
+@app.route('/resetpassword')
+def resetpass():
+    """WellNourish Profile Setup Route"""
+    return render_template('profile_setup.html', title= "Reset Password")
 
 @app.teardown_appcontext
 def close_db(error):
