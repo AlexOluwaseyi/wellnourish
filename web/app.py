@@ -24,11 +24,11 @@ def about():
     """WellNourish About Route"""
     return render_template("about.html", title="About")
 
-@app.route("/signup", strict_slashes=False)
-@app.route("/signup.html", strict_slashes=False)
-def signup():
+@app.route("/register", strict_slashes=False)
+@app.route("/register.html", strict_slashes=False)
+def register():
     """WellNourish About Route"""
-    return render_template("signup.html", title="Sign Up")
+    return render_template("register.html", title="Register")
 
 
 @app.teardown_appcontext
