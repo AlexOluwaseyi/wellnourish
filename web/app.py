@@ -24,6 +24,11 @@ def about():
     """WellNourish About Route"""
     return render_template("about.html", title="About")
 
+@app.route("/login", strict_slashes=False)
+def about():
+    """WellNourish User Login Route"""
+    return render_template("login.html", title="About")
+
 @app.route("/register", strict_slashes=False, methods=['GET', 'POST'])
 @app.route("/register.html", strict_slashes=False, methods=['GET', 'POST'])
 def register():
@@ -33,9 +38,6 @@ def register():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        # Here you would typically save the user to the database
-        # For simplicity, we'll just print the values
-        print(f"Username: {username}, Email: {email}, Password: {password}")
         # Redirect to profile setup page
         return redirect(url_for('profile_setup'))
     return render_template("register.html", title="Register")
