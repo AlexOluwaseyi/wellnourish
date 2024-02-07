@@ -432,7 +432,7 @@ header.svelte-dgiybl ul.svelte-dgiybl.svelte-dgiybl {
 
 @media screen and (min-width: 1210px) {
     .nav-list-item.svelte-dgiybl:hover .nav-list-item__text.svelte-dgiybl.svelte-dgiybl, .nav-list-item.svelte-dgiybl:focus .nav-list-item__text.svelte-dgiybl.svelte-dgiybl {
-        border-bottom: 3px solid #77E2E1;
+        border-bottom: 3px solid #ff0000;
         cursor: pointer
     }
 
@@ -448,7 +448,7 @@ header.svelte-dgiybl ul.svelte-dgiybl.svelte-dgiybl {
     }
 
     .nav-list-item.open.svelte-dgiybl .nav-list-item__text.svelte-dgiybl.svelte-dgiybl {
-        border-bottom: 3px solid #77E2E1
+        border-bottom: 3px solid #ff0000
     }
 
     .nav-list-item.open.svelte-dgiybl .dropdown.svelte-dgiybl.svelte-dgiybl {
@@ -2575,4 +2575,9 @@ svg.spin {
 
 img {
     border: none;
+}
+
+.img-fluid {
+    width: auto;
+    height: 100vh;
 }

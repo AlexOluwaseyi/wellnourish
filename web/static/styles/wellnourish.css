@@ -15,6 +15,11 @@
     margin-left: 45px;
 }
 
+.search-box input:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: transparent; /* Set the border color to transparent */
+    box-shadow: none; /* Remove any box shadow */
+}
 
 .landing .recipe-list {
     margin-top: 25px;
@@ -27,6 +32,7 @@
     background-color: #FF00;
     height: 20px;
     width: 100%;
+    padding: 0 30px 0 40px;
 }
 
 .landing .result-tiles {

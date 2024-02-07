@@ -24,6 +24,12 @@ def about():
     """WellNourish About Route"""
     return render_template("about.html", title="About")
 
+@app.route("/signup", strict_slashes=False)
+@app.route("/signup.html", strict_slashes=False)
+def signup():
+    """WellNourish About Route"""
+    return render_template("signup.html", title="Sign Up")
+
 
 @app.teardown_appcontext
 def close_db(error):
