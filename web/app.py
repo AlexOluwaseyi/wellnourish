@@ -19,6 +19,12 @@ def index():
     return render_template("index.html", title="Home")
 
 
+@app.route("/about", strict_slashes=False)
+def about():
+    """WellNourish About Route"""
+    return render_template("about.html", title="About")
+
+
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
@@ -26,5 +32,5 @@ def close_db(error):
 
 
 if __name__ == "__main__":
-    #app.run(host="0.0.0.0", port=5001)
+    # app.run(host="0.0.0.0", port=5001)
     app.run(debug=True)

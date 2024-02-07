@@ -1,5 +1,6 @@
 footer.svelte-1ozytz.svelte-1ozytz {
-    position: relative;
+    position: static;
+    bottom: 0;
     width: 100%;
     background: #000;
     padding: 16px var(--margin) 21px
