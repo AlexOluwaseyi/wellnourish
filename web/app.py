@@ -7,7 +7,7 @@ This is also the entry point of the application
 """
 from models import storage
 from models.user import User
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 
 
 app = Flask(__name__)
@@ -24,11 +24,26 @@ def about():
     """WellNourish About Route"""
     return render_template("about.html", title="About")
 
-@app.route("/register", strict_slashes=False)
-@app.route("/register.html", strict_slashes=False)
+@app.route("/register", strict_slashes=False, methods=['GET', 'POST'])
+@app.route("/register.html", strict_slashes=False, methods=['GET', 'POST'])
 def register():
-    """WellNourish About Route"""
+    """WellNourish Registration Route"""
+    if request.method == 'POST':
+        # Handle form submission
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        # Here you would typically save the user to the database
+        # For simplicity, we'll just print the values
+        print(f"Username: {username}, Email: {email}, Password: {password}")
+        # Redirect to profile setup page
+        return redirect(url_for('profile_setup'))
     return render_template("register.html", title="Register")
+
+@app.route('/profile-setup')
+def profile_setup():
+    """WellNourish Profile Setup Route"""
+    return render_template('profile_setup.html', title= "Complete Profile")
 
 
 @app.teardown_appcontext
