@@ -25,7 +25,7 @@ class User(BaseModel, Base):
 
     def __init__(self, *args, **kwargs):
         """Initializes User Object"""
-        super().__init__()
+        super().__init__(*args, **kwargs)
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
