@@ -16,7 +16,7 @@ def get_random_recipes():
 
     params = {
         "apiKey": "c238bda8889a4a9d8e203d71a0f67219",
-        "number": 12
+        "number": 12000
     }
 
     headers = {
