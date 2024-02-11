@@ -1,9 +1,9 @@
 $(document).ready(() => {
     $.get('http://0.0.0.0:5001/api/v1/recipes', function (data) {
-	let len = data.recipes.length
-	/*console.log(data.recipes)*/
-	for (let recipe of data.recipes) {
-
+	let len = data.length
+	console.log(data)
+	for (let recipe of data) {
+	    if (recipe.spoonacularScore >= 50) {
 	       let ingrList = []
 	       for (let ingr of recipe.extendedIngredients) {
 		   ingrList.push(ingr.name)
@@ -21,7 +21,7 @@ $(document).ready(() => {
 	              </li>`
  	       $('ul.recipes').append(recipeTile);
 	    $(`#${recipe.id} .list-img`).css('background-image', `url(${recipe.image})`);
-
+	    }
 	}
     });
 });

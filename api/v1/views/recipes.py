@@ -5,6 +5,7 @@ Recipe API Routes
 from api.v1.views import api_views
 from flask import jsonify, abort, make_response, request
 import requests
+from creds import apiKey
 
 
 @api_views.route('/recipes', methods=['GET'], strict_slashes=False)
@@ -15,8 +16,8 @@ def get_random_recipes():
     url = f"https://api.spoonacular.com/recipes/random"
 
     params = {
-        "apiKey": "c238bda8889a4a9d8e203d71a0f67219",
-        "number": 12000
+        "apiKey": apiKey,
+        "number": 1000
     }
 
     headers = {
@@ -26,7 +27,8 @@ def get_random_recipes():
     try:
         response = requests.get(url, params=params, headers=headers)
         if response.status_code == 200:
-            recipes = response.json()
+            new_recipes = []
+            recipes = response.json().get("recipes")
             return recipes
     except requests.exceptions.RequestException:
         return None
@@ -40,7 +42,7 @@ def get_recipes_by_ingredient(ingredients):
     url = f"https://api.spoonacular.com/recipes/findByIngredients"
 
     params = {
-        "apiKey": "c238bda8889a4a9d8e203d71a0f67219",
+        "apiKey": apiKey,
         "ingredients": ingredients
     }
 
@@ -65,7 +67,7 @@ def get_recipes_by_id(recipe_id):
     url = f"https://api.spoonacular.com/recipes/{recipe_id}/information"
 
     params = {
-        "apiKey": "c238bda8889a4a9d8e203d71a0f67219"
+        "apiKey": apiKey
     }
 
     headers = {
