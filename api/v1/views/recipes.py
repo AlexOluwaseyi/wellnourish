@@ -17,7 +17,7 @@ def get_random_recipes():
 
     params = {
         "apiKey": apiKey,
-        "number": 1000
+        "number": 100
     }
 
     headers = {
@@ -43,7 +43,8 @@ def get_recipes_by_ingredient(ingredients):
 
     params = {
         "apiKey": apiKey,
-        "ingredients": ingredients
+        "ingredients": ingredients,
+        "number": 100
     }
 
     headers = {
