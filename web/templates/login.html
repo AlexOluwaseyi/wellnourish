@@ -1,22 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="main-w3layouts wrapper">
-    <div class="text-center mt-4 name">
-        Login
-    </div>
-    <form class="p-3 mt-3">
-        <div class="form-field d-flex align-items-center">
-            <span class="far fa-user"></span>
-            <input type="text" name="username" class="placeholder" placeholder="Username">
+<div class="main-w3layouts wrapper-login">
+    <div class="main-agileinfo">
+        <div class="login">
+            LOGIN
         </div>
-        <div class="form-field d-flex align-items-center">
-            <span class="fas fa-key"></span>
-            <input type="password" name="password" class="placeholder" placeholder="Password">
+        <div class="agileits-top">
+            <form action="#" method="post">
+                <input class="text" type="text" name="username" placeholder="Username or email" required="">
+                <input class="text w3lpass" type="password" name="password" placeholder="Password" required="">
+                <input type="submit" value="LOGIN">
+            </form>
+            <p>Forgotten Password? Reset <a href="/resetpassword"> here!</a></p>
         </div>
-        <button class="btn mt-3">Login</button>
-    </form>
-    <div class="text-center fs-6">
-        <a href="/resetpass">Forget password?</a> or <a href="/register">Sign up</a>
-    </div>
 </div>
 {% endblock content %}

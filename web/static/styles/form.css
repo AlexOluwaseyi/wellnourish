@@ -43,8 +43,8 @@ h1 {
 input[type="text"], input[type="email"], input[type="password"] {
   font-size: 0.9em;
   color: #fff;
-  font-weight: 100;
-  width: 94.5%;
+  font-weight: 500;
+  width: 100%;
   display: block;
   border: none;
   padding: 0.8em;
@@ -62,16 +62,23 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 input.email, input.text.w3lpass {
   margin: 2em 0;
+  font-weight: 500;
+}
+
+.text-email {
+  font-weight: 500;
 }
 
 .text:focus, .text:valid {
   box-shadow: none;
+  font-weight: 500;
   outline: none;
   background-position: 0 0;
 }
 
 .text:focus::-webkit-input-placeholder, .text:valid::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
   font-size: .9em;
   -webkit-transform: translateY(-30px);
   -moz-transform: translateY(-30px);
@@ -250,13 +257,47 @@ input.checkbox:checked:after {
 }
 
 /*-- //copyright --*/
+.wrapper-login {
+  position: relative;
+  overflow: hidden;
+  background-image: url("../images/pexels-lumn-1410235.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+}
+
 .wrapper-register {
   position: relative;
   overflow: hidden;
   background-image: url("../images/pexels-lumn-1410235.jpg");
-  width: auto;
-  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: auto 100%;
+}
+
+.wrapper-reset {
+  position: relative;
+  overflow: hidden;
+  background-image: url("../images/pexels-lumn-1410235.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+}
+
+.reset-password {
+  padding-top: 40px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.login {
+  padding-top: 40px;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .colorlib-bubbles {
@@ -430,7 +471,7 @@ input.checkbox:checked:after {
 /*-- responsive-design --*/
 @media(max-width:1440px) {
   input[type="text"], input[type="email"], input[type="password"] {
-    width: 94%;
+    width: 100%;
   }
 }
 
@@ -450,6 +491,11 @@ input.checkbox:checked:after {
   .main-agileinfo {
     width: 36%;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:1280px) {
@@ -458,15 +504,25 @@ input.checkbox:checked:after {
   }
 }
 
-@media(max-width:1080px) {
+@media (min-width: 1080px) and (max-width: 1365px) {
   .main-agileinfo {
     width: 46%;
+  }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
   }
 }
 
 @media(max-width:1024px) {
   .main-agileinfo {
     width: 49%;
+  }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
   }
 }
 
@@ -477,6 +533,7 @@ input.checkbox:checked:after {
 
   .main-w3layouts {
     padding: 2em 0 1em;
+    background-size: auto 100% !important;
   }
 }
 
@@ -485,8 +542,13 @@ input.checkbox:checked:after {
     width: 58%;
   }
 
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
+
   input[type="text"], input[type="email"], input[type="password"] {
-    width: 93%;
+    width: 100%;
   }
 }
 
@@ -494,17 +556,32 @@ input.checkbox:checked:after {
   h1 {
     font-size: 2.2em;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:736px) {
   .main-agileinfo {
     width: 62%;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:667px) {
   .main-agileinfo {
     width: 67%;
+  }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
   }
 }
 
@@ -513,8 +590,14 @@ input.checkbox:checked:after {
     padding: 2.2em;
   }
 
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
+
   input.email, input.text.w3lpass {
     margin: 1.5em 0;
+    font-weight: 500;
   }
 
   input[type="submit"] {
@@ -535,6 +618,11 @@ input.checkbox:checked:after {
   .colorlibcopy-agile p {
     padding: 0 2em;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:480px) {
@@ -548,11 +636,16 @@ input.checkbox:checked:after {
   }
 
   input[type="text"], input[type="email"], input[type="password"] {
-    width: 91%;
+    width: 100%;
   }
 
   .agileits-top p {
     font-size: 0.9em;
+  }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
   }
 }
 
@@ -569,6 +662,7 @@ input.checkbox:checked:after {
 
   .text:focus, .text:valid {
     background-position: 0 0px;
+    font-weight: 500;
   }
 
   .wthree-text ul li, .wthree-text ul li:nth-child(2) {
@@ -592,6 +686,11 @@ input.checkbox:checked:after {
   .colorlibcopy-agile {
     margin: 1em 0 1em;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:384px) {
@@ -602,17 +701,28 @@ input.checkbox:checked:after {
   .colorlibcopy-agile p {
     padding: 0 1em;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:375px) {
   .agileits-top p {
     letter-spacing: 0px;
   }
+
+  .main-w3layouts {
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
+  }
 }
 
 @media(max-width:320px) {
   .main-w3layouts {
     padding: 1.5em 0 0;
+    background-size: auto 100% !important;
   }
 
   .agileits-top {
@@ -624,7 +734,7 @@ input.checkbox:checked:after {
   }
 
   input[type="text"], input[type="email"], input[type="password"] {
-    width: 89.5%;
+    width: 100%;
     font-size: 0.85em;
   }
 
@@ -640,6 +750,7 @@ input.checkbox:checked:after {
 
   .text:focus, .text:valid {
     background-position: 0 0px;
+    font-weight: 500;
   }
 
   input[type="submit"] {
@@ -657,7 +768,8 @@ input.checkbox:checked:after {
   }
 
   .main-w3layouts {
-    padding: 1em 0 0;
+    padding: 2em 0 1em;
+    background-size: auto 100% !important;
   }
 }
 
@@ -665,22 +777,9 @@ input.checkbox:checked:after {
     color:#fff !important;
 }
 
-/**
-Login**/
-
-
-/* Reseting *
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}*/
-
 body {
     background: #ecf0f3;
 }
-
 
 .wrapper {
     max-width: 350px;
@@ -770,6 +869,7 @@ body {
     .wrapper {
         margin: 30px 20px;
         padding: 40px 15px 15px 15px;
+        background-size: auto 100% !important;
     }
 }
 
@@ -779,4 +879,8 @@ body {
 
 .placeholder {
   color:rgba(0, 0, 0, 0.5);
+}
+
+::placeholder {
+  font-weight: 500;
 }
