@@ -6,6 +6,8 @@ Inherits from BaseModel
 
 from models.base_model import BaseModel, Base
 from uuid import uuid4
+from sqlalchemy.dialects.postgresql import UUID
+from passlib.hash import bcrypt
 import hashlib
 import sqlalchemy
 from sqlalchemy import Column, String
@@ -17,11 +19,12 @@ class User(BaseModel, Base):
     """
     __tablename__ = "users"
 
-    fname = Column(String(128), nullable=True)
-    lname = Column(String(128), nullable=True)
-    email = Column(String(128), nullable=False)
-    username = Column(String(128), nullable=False)
-    password = Column(String(128), nullable=False, default='1234567890')
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
+    first_name = Column(String(128))
+    last_name = Column(String(128))
+    email = Column(String(128), nullable=False, unique=True)
+    username = Column(String(128), nullable=False, unique=True)
+    password = Column(String(128), nullable=False)
 
     def __init__(self, *args, **kwargs):
         """Initializes User Object"""
@@ -47,6 +50,12 @@ class User(BaseModel, Base):
         """Reset user account password """
         pass
 
+    def set_password(self, password):
+        self.password_hash = bcrypt.hash(password)
+
+    def check_password(self, password):
+        return bcrypt.verify(password, self.password_hash)
+
     def change_password(self, new_password):
         """Change the user's password.
         If password is same as default password and password is not
@@ -54,5 +63,6 @@ class User(BaseModel, Base):
 
         New password is hashed with sha256 encoding for security.
         """
-        hashed_password = hashlib.sha256(new_password.encode()).hexdigest()
-        self.password = hashed_password
+        if not new_password:
+            raise ValueError("New password cannot be empty")
+        self.set_password(new_password)

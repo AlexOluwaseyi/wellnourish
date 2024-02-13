@@ -2,7 +2,7 @@
     position: relative;
     height: 70px;
     width: 100%;
-    border: 1px solid #DDDDDD;
+    border: 1px solid #838383;
     border-radius: 50px;
     margin-top: 15px;
 }
@@ -13,6 +13,7 @@
     border: none;
     height: 100%;
     margin-left: 45px;
+    color: #000 !important;
 }
 
 .search-box input:focus {
@@ -155,4 +156,9 @@
 	top: 20%;
 	right: 30px;
     }
+}
+
+.input-home::placeholder {
+    font-weight: 500;
+    color: #000 !important;
 }

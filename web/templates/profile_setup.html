@@ -1,24 +1,111 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="main-w3layouts wrapper">
-    <h1>Complete your user profile setup</h1>
+<div class="main-w3layouts wrapper-login">
     <div class="main-agileinfo">
+        <div class="login">
+            Complete Profile
+        </div>
         <div class="agileits-top">
             <form action="#" method="post">
-                <input class="text" type="text" name="username" placeholder="Username" required="">
-                <input class="text email" type="email" name="email" placeholder="Email" required="">
-                <input class="text" type="password" name="password" placeholder="Password" required="">
-                <input class="text w3lpass" type="password" name="password" placeholder="Confirm Password" required="">
-                <div class="wthree-text">
-                    <label class="anim">
-                        <input type="checkbox" class="checkbox" required="">
-                        <span>I Agree To The <a href="#0" class="tc">Terms & Conditions</a></span>
-                    </label>
-                    <div class="clear"> </div>
-                </div>
-                <input type="submit" value="REGISTER">
+                <input class="text" type="text" name="first_name" placeholder="First Name" required="">
+                <input class="text w3lpass" type="text" name="last_name" placeholder="Last Name" required="">
+                <input class="text w3lpass" type="text" name="health_records" placeholder="Allergies" required="">
+                <label class="text w3lpass" for="allergies_dropdown">Select allergies:</label>
+                <div class="dropdown">
+                    <button class="dropbtn" onclick="toggleDropdown()">Dropdown</button>
+                    <div class="dropdown-content" id="allergies_dropdown">
+                        <option value="volvo">Volvo</option>
+                        <option value="saab">Saab</option>
+                        <option value="fiat">Fiat</option>
+                        <option value="audi">Audi</option>
+                    </div>
+                </div><!--
+                <select id="cars" name="cars" size="4" multiple>
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="fiat">Fiat</option>
+                    <option value="audi">Audi</option>
+                  </select>-->
+                  <!--
+                <div class="btn-group bootstrap-select show-tick form-control input-sm">
+                    <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="id_occupation" aria-expanded="false">
+                        <div class="filter-option pull-left" data-empty="true">Unknown
+                        </div>&nbsp;
+                        <div class="caret"></div>
+                    </button>
+                    <div class="dropdown-menu open" style="max-height: 569.609px; overflow: hidden; min-height: 92px;">
+                        <ul class="dropdown-menu inner" role="menu" style="max-height: 557.609px; overflow-y: auto; min-height: 80px;">
+                            <li rel="0" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Technologist / IT Practitioner</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="1" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">IT Leader / Executive</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="2" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Transitioning from Other Industry</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="3" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Entrepreneur / Founder</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="4" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Venture Capitalist / Investor</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="5" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Non-Tech (Sales, Marketing, HR, etc.)</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="6" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Educator / IT Instructor</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                            <li rel="7" class="">
+                                <a tabindex="0" class="" style="">
+                                    <span class="text">Student (Primary, Higher Ed, Bootcamp, etc.)</span>
+                                    <i class="glyphicon glyphicon-ok icon-ok check-mark"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>-->
+                <input type="submit" value="SUBMIT">
             </form>
-            <p>Already have an Account? <a href="/login"> Login Now!</a></p>
         </div>
 </div>
+<script>
+    function toggleDropdown() {
+        document.getElementById("allergies_dropdown").classList.toggle("show");
+    }
+    
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+    </script>
 {% endblock content %}
