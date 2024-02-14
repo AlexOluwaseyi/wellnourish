@@ -23,6 +23,21 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
+"""Declaration of diets and intolerances (allergies)
+FUll list of diets and intolerances as specified by spoonacular
+Diets - https://spoonacular.com/food-api/docs#Diets
+Intolerances - https://spoonacular.com/food-api/docs#Intolerances
+"""
+diets = ['Gluten Free', 'Ketogenic', 'Vegetarian',
+         'Lacto-Vegetarian', 'Ovo-Vegetarian',
+         'Vegan', 'Pescetarian', 'Paleo', 'Primal',
+         'Low FODMAP', 'Whole30']
+
+intolerances = ['Dairy', 'Egg', 'Gluten', 'Grain', 'Peanut',
+                'Seafood', 'Sesame', 'Shellfish', 'Soy',
+                'Sulfite', 'Tree Nut', 'Wheat']
+
+
 @login_manager.user_loader
 def load_user(user_id):
     # Your implementation to load a user from the database using the user_id
@@ -92,7 +107,8 @@ def complete_profile():
         storage.save()
         # Redirect to profile setup page
         return redirect(url_for('profile'))
-    return render_template('profile_setup.html', title="Complete Profile")
+    return render_template('profile_setup.html', title="Complete Profile",
+                           diets=diets, intolerances=intolerances)
 
 
 @app.route('/resetpassword')

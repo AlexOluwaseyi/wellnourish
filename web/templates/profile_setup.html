@@ -10,15 +10,14 @@
                 <input class="text" type="text" name="first_name" placeholder="First Name" required="">
                 <input class="text w3lpass" type="text" name="last_name" placeholder="Last Name" required="">
                 <input class="text w3lpass" type="text" name="health_records" placeholder="Allergies" required="">
-                <label class="text w3lpass" for="allergies_dropdown">Select allergies:</label>
+                <!-- <label class="text w3lpass" for="allergies_dropdown">Select allergies: </label> -->
                 <div class="dropdown">
-                    <button class="dropbtn" onclick="toggleDropdown()">Dropdown</button>
-                    <div class="dropdown-content" id="allergies_dropdown">
-                        <option value="volvo">Volvo</option>
-                        <option value="saab">Saab</option>
-                        <option value="fiat">Fiat</option>
-                        <option value="audi">Audi</option>
-                    </div>
+                    <select size="7" multiple>
+                        {% for diet in intolerances %}
+                        <option class="drp-dwn" value="">{{ diet }}</option>
+                        {% endfor %}
+                    <!-- </div> -->
+                    </select>
                 </div>
                 <input type="submit" value="SUBMIT">
             </form>

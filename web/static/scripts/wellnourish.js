@@ -52,4 +52,17 @@ $(document).ready(() => {
 	    }
 	});
     });
+
+	const selectedDiets = [];
+	const selectedIntolerances = [];
+	$("#dropdownBtn").on("click", function() {
+		$(".dropdown-menu").toggleClass("show");
+	});
+
+	$(document).click(function(e) {
+		if (!$(e.target).closest('.dropdown').length) {
+			$(".dropdown-menu").removeClass("show");
+		}
+	});
+
 });
