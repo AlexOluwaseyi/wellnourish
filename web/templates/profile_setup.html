@@ -10,15 +10,31 @@
                 <input class="text" type="text" name="first_name" placeholder="First Name" required="">
                 <input class="text w3lpass" type="text" name="last_name" placeholder="Last Name" required="">
                 <input class="text w3lpass" type="text" name="health_records" placeholder="Allergies" required="">
-                <!-- <label class="text w3lpass" for="allergies_dropdown">Select allergies: </label> -->
+
                 <div class="dropdown">
-                    <select size="7" multiple>
-                        {% for diet in intolerances %}
-                        <option class="drp-dwn" value="">{{ diet }}</option>
-                        {% endfor %}
-                    <!-- </div> -->
-                    </select>
-                </div>
+                    <label for="intolerance-dropdown">Intolerances</label>
+                    <div class="dropdown-container" id="intolerance-dropdown">
+                        {% for intolerance in intolerances %}
+                        <div class="checkbox-row">
+                          <input type="checkbox" id="intolerance_{{ loop.index }}" name="intolerance[]" value="{{ diet }}">
+                          <label class="drpdwn" for="intolerance_{{ loop.index }}">{{ intolerance }}</label>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                
+                                
+                  <div class="dropdown">
+                    <label for="diet-dropdown">Diets</label>
+                    <div class="dropdown-container" id="diet-dropdown">
+                        {% for diet in diets %}
+                        <div class="checkbox-row">
+                          <input type="checkbox" id="diet_{{ loop.index }}" name="diet[]" value="{{ diet }}">
+                          <label class="drpdwn" for="diet_{{ loop.index }}">{{ diet }}</label>
+                        </div>
+                      {% endfor %}
+                    </div>
+                  </div>
                 <input type="submit" value="SUBMIT">
             </form>
         </div>

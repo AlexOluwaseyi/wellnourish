@@ -55,14 +55,22 @@ $(document).ready(() => {
 
 	const selectedDiets = [];
 	const selectedIntolerances = [];
-	$("#dropdownBtn").on("click", function() {
-		$(".dropdown-menu").toggleClass("show");
-	});
+	const dropdownContainers = document.querySelectorAll('.dropdown-container');
+	dropdownContainers.forEach(container => {
+		const label = container.previousElementSibling; // Get the preceding label
+		
+		// Close dropdown when clicking outside
+		document.addEventListener('click', event => {
+    		if (!container.contains(event.target) && !label.contains(event.target)) {
+      		container.style.display = 'none';
+    		}
+  		});
 
-	$(document).click(function(e) {
-		if (!$(e.target).closest('.dropdown').length) {
-			$(".dropdown-menu").removeClass("show");
-		}
+		// Toggle dropdown on label click
+		label.addEventListener('click', () => {
+			const containerIsVisible = container.style.display === 'block';
+			container.style.display = containerIsVisible ? 'none' : 'block';
+  		});
 	});
 
 });
