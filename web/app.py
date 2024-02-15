@@ -89,7 +89,7 @@ def register():
     return render_template("register.html", title="Register")
 
 
-@app.route('/completeprofile/<user_id>', strict_slashes=False, methods=['GET', 'POST'])
+@app.route('/completeprofile/<user_id>', methods=['GET', 'POST'])
 def complete_profile(user_id):
     """WellNourish Profile Setup Route
     Add more information to the User model"""
