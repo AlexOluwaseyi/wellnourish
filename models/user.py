@@ -19,10 +19,10 @@ class User(BaseModel, Base):
     """
     __tablename__ = "users"
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid4)
     first_name = Column(String(128))
     last_name = Column(String(128))
     email = Column(String(128), nullable=False, unique=True)
+    gender = Column(String(8), nullable=True)
     username = Column(String(128), nullable=False, unique=True)
     password = Column(String(128), nullable=False)
 

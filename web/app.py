@@ -8,10 +8,10 @@ This is also the entry point of the application
 
 from models import storage
 from models.user import User
-from flask import Flask, flash, render_template, redirect, url_for, request
+from flask import (Flask, flash, render_template,
+                   redirect, url_for, request, abort)
 from flask_login import (LoginManager, UserMixin, login_user,
                          current_user, login_required, logout_user)
-from uuid import uuid4
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -76,16 +76,12 @@ def register():
     """WellNourish Registration Route"""
     if request.method == 'POST':
         # Handle form submission
-        id = uuid4()
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
-        first_name = None
-        last_name = None
         # Create a new user and save it to the database here
-        new_user = User(id=id, username=username, email=email,
-                        password=password, first_name=first_name,
-                        last_name=last_name)
+        new_user = User(username=username, email=email,
+                        password=password)
         storage.new(new_user)
         storage.save()
         # Redirect to profile setup page
@@ -93,17 +89,22 @@ def register():
     return render_template("register.html", title="Register")
 
 
-@app.route('/completeprofile', strict_slashes=False, methods=['GET', 'POST'])
-def complete_profile():
+@app.route('/completeprofile/<user_id>', strict_slashes=False, methods=['GET', 'POST'])
+def complete_profile(user_id):
     """WellNourish Profile Setup Route
     Add more information to the User model"""
+    current_user = User.query.get(user_id)
+    if not current_user:
+        abort(404)
     if request.method == 'POST':
         # Handle form submission
         current_user.first_name = request.form['first_name']
         current_user.last_name = request.form['last_name']
-        current_user.health_records = request.form.getlist('health_records')
-        current_user.allergies = request.form.getlist('allergies')
+        current_user.gender = request.form['gender']
+        current_user.intolerances = request.form.getlist('intolerances')
+        current_user.diets = request.form.getlist('diets')
         # Create a new user and save it to the database here
+        db.session.commit()
         storage.save()
         # Redirect to profile setup page
         return redirect(url_for('profile'))
@@ -111,17 +112,15 @@ def complete_profile():
                            diets=diets, intolerances=intolerances)
 
 
-@app.route('/resetpassword')
-@login_required
+@app.route('/resetpassword', methods=['GET', 'POST'])
 def resetpass():
     """WellNourish Profile Setup Route"""
     return render_template('reset_password.html', title="Reset Password")
 
 
 @app.route('/profile')
-@login_required
 def profile():
-    return render_template('profile.html', user=current_user)
+    return render_template('index.html', user=current_user)
 
 
 @app.teardown_appcontext

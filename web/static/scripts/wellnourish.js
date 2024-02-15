@@ -55,22 +55,26 @@ $(document).ready(() => {
 
 	const selectedDiets = [];
 	const selectedIntolerances = [];
-	const dropdownContainers = document.querySelectorAll('.dropdown-container');
-	dropdownContainers.forEach(container => {
-		const label = container.previousElementSibling; // Get the preceding label
-		
-		// Close dropdown when clicking outside
-		document.addEventListener('click', event => {
-    		if (!container.contains(event.target) && !label.contains(event.target)) {
-      		container.style.display = 'none';
-    		}
-  		});
 
-		// Toggle dropdown on label click
-		label.addEventListener('click', () => {
-			const containerIsVisible = container.style.display === 'block';
-			container.style.display = containerIsVisible ? 'none' : 'block';
-  		});
-	});
+	$('.dropdown-container').each(function() {
+		const $this = $(this); // Cache the jQuery object for the container
+		const $label = $this.prev(); // Get the preceding label
+		const $caret = $label.next().find('.caret-img'); // Select the caret image
+	
+		// Close dropdown when clicking outside
+		$(document).click(function(event) {
+		  if (!$this.is(event.target) && !$this.has(event.target).length &&
+			  !$label.is(event.target) && !$label.has(event.target).length) {
+			$this.hide();
+			$caret.css('transform', 'rotate(0deg)'); // Reset rotation when closing
+		  }
+		});
+	
+		// Toggle dropdown and update caret rotation
+		$label.click(function() {
+		  $this.toggle();
+		  $caret.css('transform', $this.is(':visible') ? 'rotate(180deg)' : 'rotate(0deg)');
+		});
+	  });
 
 });

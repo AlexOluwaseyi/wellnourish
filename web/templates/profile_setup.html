@@ -9,10 +9,10 @@
             <form action="#" method="post">
                 <input class="text" type="text" name="first_name" placeholder="First Name" required="">
                 <input class="text w3lpass" type="text" name="last_name" placeholder="Last Name" required="">
-                <input class="text w3lpass" type="text" name="health_records" placeholder="Allergies" required="">
+                <input class="text w3lpass" type="text" name="gender" placeholder="Gender">
 
                 <div class="dropdown">
-                    <label for="intolerance-dropdown">Intolerances</label>
+                    <label for="intolerance-dropdown">Intolerances</label><img class="caret-img" id="caret-intolerances"src="../static/images/icons/caret-down.svg">
                     <div class="dropdown-container" id="intolerance-dropdown">
                         {% for intolerance in intolerances %}
                         <div class="checkbox-row">
@@ -25,7 +25,7 @@
                 
                                 
                   <div class="dropdown">
-                    <label for="diet-dropdown">Diets</label>
+                    <label for="diet-dropdown">Diets</label><img class="caret-img" id="caret-diets" src="../static/images/icons/caret-down.svg">
                     <div class="dropdown-container" id="diet-dropdown">
                         {% for diet in diets %}
                         <div class="checkbox-row">
