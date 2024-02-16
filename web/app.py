@@ -120,8 +120,8 @@ def complete_profile(user_id):
         current_user.first_name = request.form['first_name']
         current_user.last_name = request.form['last_name']
         current_user.gender = request.form['gender']
-        current_user.intolerances = request.form.getlist('intolerances')
-        current_user.diets = request.form.getlist('diets')
+        current_user.intolerances = request.form.getlist('selectedIntolerances')
+        current_user.diets = request.form.getlist('selectedDiets')
         # Create a new user and save it to the database here
         storage.save()
         # Redirect to profile setup page

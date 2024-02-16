@@ -12,11 +12,12 @@
                 <input class="text w3lpass" type="text" name="gender" placeholder="Gender">
 
                 <div class="dropdown">
-                    <label for="intolerance-dropdown">Intolerances</label><img class="caret-img" id="caret-intolerances"src="../static/images/icons/caret-down.svg">
+                    <label for="intolerance-dropdown">Intolerances</label><h4 class="intolerance-h4">&nbsp;</h4>
+                    <img class="caret-img" id="caret-intolerances"src="../static/images/icons/caret-down.svg">
                     <div class="dropdown-container" id="intolerance-dropdown">
                         {% for intolerance in intolerances %}
                         <div class="checkbox-row">
-                          <input type="checkbox" id="intolerance_{{ loop.index }}" name="intolerance[]" value="{{ diet }}">
+                          <input type="checkbox" id="intolerance_{{ loop.index }}" name="intolerance" value="{{ diet }}">
                           <label class="drpdwn" for="intolerance_{{ loop.index }}">{{ intolerance }}</label>
                         </div>
                       {% endfor %}
@@ -25,12 +26,12 @@
                 
                                 
                   <div class="dropdown">
-                    <label for="diet-dropdown">Diets</label>
+                    <label for="diet-dropdown">Diets:</label><h4 class="diet-h4">&nbsp;</h4>
                     <img class="caret-img" id="caret-diets" src="../static/images/icons/caret-down.svg">
                     <div class="dropdown-container" id="diet-dropdown">
                         {% for diet in diets %}
                         <div class="checkbox-row">
-                          <input type="checkbox" id="diet_{{ loop.index }}" name="diet[]" value="{{ diet }}">
+                          <input type="checkbox" id="diet_{{ loop.index }}" name="diet" value="{{ diet }}">
                           <label class="drpdwn" for="diet_{{ loop.index }}">{{ diet }}</label>
                         </div>
                       {% endfor %}

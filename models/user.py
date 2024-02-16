@@ -27,6 +27,8 @@ class User(BaseModel, Base, UserMixin):
     gender = Column(String(8), nullable=True)
     username = Column(String(128), nullable=False, unique=True)
     password = Column(String(128), nullable=False)
+    diets = Column(String(128))
+    intolerances = Column(String(128))
 
     def __init__(self, *args, **kwargs):
         """Initializes User Object"""
