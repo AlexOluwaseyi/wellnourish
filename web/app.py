@@ -71,8 +71,8 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = User.query.filter_by(username=username).first()
-        if user and user.check_password(password):
+        user = storage.get(User, user)
+        if user.username and user.check_password(password):
             login_user(user)
             return redirect(url_for('index'))
         else:

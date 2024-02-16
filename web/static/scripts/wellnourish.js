@@ -74,6 +74,20 @@ $(document).ready(() => {
     });
   });
 
+  function validatePasswords () {
+    const passwordInput = $('#password');
+    const confirmPasswordInput = $('#confirmPassword');
+    console.log(passwordInput);
+    console.log(confirmPasswordInput);
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      alert("Passwords don't match! Please re-enter.");
+      confirmPasswordInput.focus(); // Set focus to confirm password field
+      return false; // Prevent form submission
+    }
+
+    return true; // Allow form submission if passwords match
+  }
+
   const selectedDiets = {};
   const selectedIntolerances = {};
 
