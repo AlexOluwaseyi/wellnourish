@@ -950,3 +950,13 @@ label {
   width: auto;
   height: 10px;
 }
+
+.flash {
+  padding:0.5em 0;
+  background-color:rgb(155,100, 55, 0.5);
+}
+
+.flash h1 {
+  font-size: 1.9em;
+  font-weight: 300;
+}

@@ -7,13 +7,15 @@ Inherits from BaseModel
 from models.base_model import BaseModel, Base
 from uuid import uuid4
 from sqlalchemy.dialects.postgresql import UUID
-from passlib.hash import bcrypt
-import hashlib
-import sqlalchemy
+from flask_bcrypt import Bcrypt
+from flask import session
 from sqlalchemy import Column, String
+from flask_login import UserMixin
+
+bcrypt = Bcrypt()
 
 
-class User(BaseModel, Base):
+class User(BaseModel, Base, UserMixin):
     """
     User class model definition
     """
@@ -33,10 +35,17 @@ class User(BaseModel, Base):
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
+                if key == "password":
+                    setattr(self, "password",
+                            bcrypt.generate_password_hash(value))
 
     def get_username(self):
         """Gets the user's username"""
         return self.username
+
+    def get_id(self):
+        """Gets the user's username"""
+        return self.id
 
     def get_email(self):
         """Gets the user's username"""
@@ -54,7 +63,7 @@ class User(BaseModel, Base):
         self.password_hash = bcrypt.hash(password)
 
     def check_password(self, password):
-        return bcrypt.verify(password, self.password_hash)
+        return bcrypt.check_password_hash(self.password, password)
 
     def change_password(self, new_password):
         """Change the user's password.

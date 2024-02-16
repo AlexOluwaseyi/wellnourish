@@ -1,7 +1,17 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="main-w3layouts wrapper-register">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="flash">
+                {% for mesg in get_flashed_messages() %}
+                    <h1>{{ mesg }}</h1>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
     <div class="main-agileinfo">
+            
         <div class="agileits-top">
             <form action="#" method="post">
                 <input class="text" type="text" name="username" placeholder="Username" required="">
