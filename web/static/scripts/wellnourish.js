@@ -77,9 +77,9 @@ $(document).ready(() => {
   function validatePasswords () {
     const passwordInput = $('#password');
     const confirmPasswordInput = $('#confirmPassword');
-    console.log(passwordInput);
-    console.log(confirmPasswordInput);
-    if (passwordInput.value !== confirmPasswordInput.value) {
+    console.log(passwordInput.val());
+    console.log(confirmPasswordInput.val());
+    if (passwordInput.val() !== confirmPasswordInput.val()) {
       alert("Passwords don't match! Please re-enter.");
       confirmPasswordInput.focus(); // Set focus to confirm password field
       return false; // Prevent form submission
@@ -87,6 +87,13 @@ $(document).ready(() => {
 
     return true; // Allow form submission if passwords match
   }
+
+  // Attach the validatePasswords function to the form's submit event
+  $('form').submit(function(event) {
+    if (!validatePasswords()) {
+      event.preventDefault(); // Prevent form submission if passwords don't match
+    }
+  });
 
   const selectedDiets = {};
   const selectedIntolerances = {};
