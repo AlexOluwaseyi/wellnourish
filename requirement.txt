@@ -27,3 +27,4 @@ passlib==1.7.4
 bcrypt==4.1.2
 flask_login==0.6.3
 flask_bcrypt==1.0.1
+flask_sqlalchemy==3.1.1

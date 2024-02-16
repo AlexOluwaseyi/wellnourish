@@ -17,21 +17,20 @@
                     <div class="dropdown-container" id="intolerance-dropdown">
                         {% for intolerance in intolerances %}
                         <div class="checkbox-row">
-                          <input type="checkbox" id="intolerance_{{ loop.index }}" name="intolerance" value="{{ diet }}">
+                          <input type="checkbox" data-id="intolerance_{{ loop.index }}" name="intolerance" data-value="{{ intolerance }}">
                           <label class="drpdwn" for="intolerance_{{ loop.index }}">{{ intolerance }}</label>
                         </div>
                       {% endfor %}
                     </div>
                   </div>
-                
-                                
+
                   <div class="dropdown">
                     <label for="diet-dropdown">Diets:</label><h4 class="diet-h4">&nbsp;</h4>
                     <img class="caret-img" id="caret-diets" src="../static/images/icons/caret-down.svg">
                     <div class="dropdown-container" id="diet-dropdown">
                         {% for diet in diets %}
                         <div class="checkbox-row">
-                          <input type="checkbox" id="diet_{{ loop.index }}" name="diet" value="{{ diet }}">
+                          <input type="checkbox" data-id="diet_{{ loop.index }}" name="diet" data-value="{{ diet }}">
                           <label class="drpdwn" for="diet_{{ loop.index }}">{{ diet }}</label>
                         </div>
                       {% endfor %}

@@ -91,7 +91,7 @@ $(document).ready(() => {
   });
 
   // Collect checked items from Intolerances dropdown
-  $('#diet-dropdown input[type="checkbox"]').on('click', function () {
+  $('#intolerance-dropdown input[type="checkbox"]').on('click', function () {
     const intoleranceId = $(this).data('id');
     const intoleranceName = $(this).data('value');
     if (Object.prototype.hasOwnProperty.call(selectedIntolerances, intoleranceId)) {
