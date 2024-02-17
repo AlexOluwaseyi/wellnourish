@@ -39,6 +39,7 @@ def get_recipes_by_ingredient(ingredients):
     """
     Retrieves a random list of recipes
     """
+    #url = f"https://api.spoonacular.com/recipes/findByIngredients"
     url = f"https://api.spoonacular.com/recipes/findByIngredients"
 
     params = {

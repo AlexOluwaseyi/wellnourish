@@ -2,8 +2,9 @@
 {% block content %}
 <div class="landing">
   <div class="search-box">
-    <input class="input-home" type="text" placeholder="Ingredients: Rice, Onions">
-    <button type="button" class="search-button">Search
+    <input class="input-home" type="text" placeholder="Ingredients: Rice, Carrots">
+    <button type="button" class="search-button">
+      <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><path d="M10.0780142,0 C15.091663,0 19.1560284,4.06436539 19.1560284,9.07801418 C19.1560284,11.7201597 18.0272767,14.0986712 16.2256822,15.7576398 L22.544153,22.0759308 C22.8985219,22.4302996 22.9052702,23.011836 22.5507517,23.3663545 L22.5507517,23.3663545 L22.4572086,23.4480573 C22.0993908,23.7199908 21.5886439,23.6880718 21.260328,23.3597559 L21.260328,23.3597559 L14.7580917,16.8582376 C13.3914568,17.6820838 11.7900833,18.1560284 10.0780142,18.1560284 C5.06436539,18.1560284 1,14.091663 1,9.07801418 C1,4.06436539 5.06436539,0 10.0780142,0 Z M10.0780142,1.81560284 C6.06709515,1.81560284 2.81560284,5.06709515 2.81560284,9.07801418 C2.81560284,13.0889332 6.06709515,16.3404255 10.0780142,16.3404255 C14.0889332,16.3404255 17.3404255,13.0889332 17.3404255,9.07801418 C17.3404255,5.06709515 14.0889332,1.81560284 10.0780142,1.81560284 Z" id="path-search"></path></defs><g id="icons-/-search" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><mask id="mask-search" fill="white"><use xlink:href="#path-search"></use></mask><use fill="currentColor" xlink:href="#path-search"></use><g id="Group" mask="url(#mask-search)" fill="currentColor"><g id="color-/-primary-/-black"><rect id="Rectangle" x="0" y="0" width="24" height="24"></rect></g></g></g></svg>
     </button>
   </div>
   <div class="recipe-list">
@@ -12,7 +13,24 @@
 	<h4>Recipes</h4>
       </div>
       <div class="result-filter">
-	<h4>Filters</h4>
+	<h4><i class="fa fa-filter"></i></h4>
+	<div class="filter-options">
+	  <div class="filter-diet">
+	    <h6>Diet</h6>
+	    {% for diet in diets %}
+	       <input type="checkbox" class="checkbox" id="diet_{{ loop.index }}" value="{{ diet }}">
+	       <label for="diet_{{ loop.index }}">{{ diet }}</label><br>
+	    {% endfor %}
+	  </div>
+
+	  <div class="filter-intolerance">
+	    <h6>Intolerance</h6>
+	    {% for intolerance in intolerances %}
+	       <input type="checkbox" class="checkbox" id="intolerance_{{ loop.index }}" value="{{ intolerance }}">
+	       <label for="intolerance_{{ loop.index }}">{{ intolerance }}</label><br>
+	    {% endfor %}
+	  </div>
+	</div>
       </div>
     </div>
     <div class="result-tiles">
@@ -24,6 +42,3 @@
 
 </div>
 {% endblock %}
-
-
-

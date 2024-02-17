@@ -1,0 +1,36 @@
+.landing_space {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 30px auto;
+    overflow: hidden !important;
+    height: 100vh;
+}
+
+.landing_heading {
+    font-weight: 500;
+    margin-right: 25px;
+    margin-left: 25px;
+    text-align: center;
+    color: #ff0000;
+}
+
+.landing_paragraph {
+    margin-right: 25px;
+    margin-left: 25px;
+    text-align: justify;
+}
+
+.landing_button {
+    padding: 15px;
+    border: 2px solid #ff0000;
+}
+
+.landing_button:hover {
+    border: None;
+    color: #ffff;
+    background-color: #ff0000;
+    text-align: justify;
+}

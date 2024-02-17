@@ -48,12 +48,9 @@ ul {
   align-items: center;
   /**background-image: url("../images/pexels-lumn-1410235.jpg");**/
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 25%;
   max-width: 1000px;
   margin: 30px auto;
-  overflow: hidden !important;
-
+  /**overflow: hidden !important;*/
 }
 
 .empty {
