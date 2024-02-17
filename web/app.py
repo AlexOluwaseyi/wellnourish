@@ -49,7 +49,11 @@ def load_user(user_id):
 @app.route("/", strict_slashes=False)
 def index():
     """WellNourish Index Route"""
-    return render_template("index.html", title="Home")
+    filters = ['vegetarian', 'vegan', 'glutenFree', 'diaryFree',
+               'veryHealthy', 'cheap', 'popular', 'lowFodmap']
+
+    return render_template("index.html", title="Home",
+                           diets=diets, intolerances=intolerances)
 
 @app.route("/landing_page", strict_slashes=False)
 def landing_page():

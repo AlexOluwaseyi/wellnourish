@@ -30,13 +30,48 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: #FF00;
     height: 20px;
     width: 100%;
     padding: 0 30px 0 40px;
 }
 
+.result-filter {
+    position: relative;
+    display: inline-block;
+}
+
+.result-filter h4:hover {
+    cursor: pointer;
+    color: #ff0000;
+}
+
+h4 .fa {
+    font: normal normal normal 20px/1 FontAwesome !important;
+}
+
+.filter-options {
+    display: none;
+    color: #ff0000;
+    width: 400px;
+    position: absolute;
+    background-color: black;
+    padding: 15px 30px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    right: 8px;
+}
+
+.filter-options-show {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
 .landing .result-tiles {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     margin-top: -5px;
 }
@@ -44,7 +79,7 @@
 .result-tiles ul {
     column-count: 4;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 15px;
     margin-top: 1%;
 }
 
@@ -96,14 +131,21 @@
 .search-button {
     position: absolute;
     font-size: 15px;
-    background: #FF0000;
-    color: #FFFFFF;
+    background: #000000;
+    color: #FFFF;
     height: 40px;
     width: 10%;
-    border-style: none;
     border-radius: 20px;
     top: 20%;
     right: 30px;
+}
+
+.search-button:hover {
+    position: absolute;
+    font-size: 15px;
+    background: #FF0000;
+    color: #FFFF;
+    border-style: None;
 }
 
 @media only screen and (max-width: 920px)
@@ -144,13 +186,13 @@
 	font-size: 10px;
     }
 
-    button {
+    .search-button {
 	position: absolute;
 	font-size: 10px;
 	background: #FF0000;
 	color: #FFFFFF;
 	height: 30px;
-	width: 60px;
+	width: 100px;
 	border-style: none;
 	border-radius: 25px;
 	top: 20%;

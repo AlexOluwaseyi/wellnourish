@@ -1,4 +1,12 @@
 $(document).ready(() => {
+
+  // Clear all check boxes
+  $('input[type="checkbox"]').each(function(){
+      $(this).prop('checked', false);
+
+  });
+
+  // Get the popular recipes
   $.get('http://0.0.0.0:5001/api/v1/recipes', function (data) {
     const len = data.length;
     console.log(data);
@@ -25,6 +33,36 @@ $(document).ready(() => {
     }
   });
 
+  // Toggle Class when filter button is pressed
+  $('.result-filter h4').on('click', function () {
+      $('.filter-options').toggleClass('filter-options-show');
+  });
+
+  // Closes the filter menu when any area outside is clicked
+    /**$('body').on('click', function(event) {
+	  $(".filter-options").each(function() {
+	      if ($(this).hasClass('filter-options-show')) {
+		  $(this).removeClass('filter-options-show');
+	      }
+	  });
+  });**/
+
+  let selectedFilters = {};
+  $('.filter-options input[type="checkbox"]').on('change', function () {
+      let filterOption = $(this);
+      let filterId = filterOption.attr('id');
+      let filterValue = filterOption.attr('value');
+      if (filterOption.prop('checked')) {
+	  selectedFilters[filterId] = filterValue
+      }
+      else {
+	  delete selectedFilters[filterId];
+      }
+
+      console.log(Object.values(selectedFilters).join(', '));
+  });
+
+  // Returns search result
   $('.search-button').on('click', function () {
     $('.result-tiles ul').empty();
     const ingrs = $('.search-box input').val();
@@ -53,6 +91,8 @@ $(document).ready(() => {
     });
   });
 
+
+  // Dropdown feature for profile completion
   $('.dropdown-container').each(function () {
     const $this = $(this); // Cache the jQuery object for the container
     const $label = $this.prev(); // Get the preceding label
@@ -74,6 +114,8 @@ $(document).ready(() => {
     });
   });
 
+
+  // Password Validation Code
   function validatePasswords () {
     const passwordInput = $('#password');
     const confirmPasswordInput = $('#confirmPassword');
@@ -88,7 +130,7 @@ $(document).ready(() => {
     return true; // Allow form submission if passwords match
   }
 
-  // Attach the validatePasswords function to the form's submit event
+  // Attaches the validatePasswords function to the form's submit event
   $('form').submit(function(event) {
     if (!validatePasswords()) {
       event.preventDefault(); // Prevent form submission if passwords don't match
@@ -98,7 +140,7 @@ $(document).ready(() => {
   const selectedDiets = {};
   const selectedIntolerances = {};
 
-  // Collect checked items from Diets dropdown
+  // Collects checked items from Diets dropdown
   $('#diet-dropdown input[type="checkbox"]').on('click', function () {
     const dietId = $(this).data('id');
     const dietName = $(this).data('value');
@@ -111,7 +153,7 @@ $(document).ready(() => {
     $('.diet-h4').text(Object.values(selectedDiets).join(', '));
   });
 
-  // Collect checked items from Intolerances dropdown
+  // Collects checked items from Intolerances dropdown
   $('#intolerance-dropdown input[type="checkbox"]').on('click', function () {
     const intoleranceId = $(this).data('id');
     const intoleranceName = $(this).data('value');
