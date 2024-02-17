@@ -77,8 +77,6 @@ $(document).ready(() => {
   function validatePasswords () {
     const passwordInput = $('#password');
     const confirmPasswordInput = $('#confirmPassword');
-    console.log(passwordInput.val());
-    console.log(confirmPasswordInput.val());
     if (passwordInput.val() !== confirmPasswordInput.val()) {
       alert("Passwords don't match! Please re-enter.");
       confirmPasswordInput.focus(); // Set focus to confirm password field
@@ -107,8 +105,9 @@ $(document).ready(() => {
     } else {
       selectedDiets[dietId] = dietName;
     }
-
-    $('.diet-h4').text(Object.values(selectedDiets).join(', '));
+    const dietsString = Object.values(selectedDiets).join(', ');
+    $('.diet-p').text(Object.values(selectedDiets).join(', '));
+    $('#diets-string').val(dietsString);
   });
 
   // Collect checked items from Intolerances dropdown
@@ -120,7 +119,9 @@ $(document).ready(() => {
     } else {
       selectedIntolerances[intoleranceId] = intoleranceName;
     }
-
-    $('.intolerance-h4').text(Object.values(selectedIntolerances).join(', '));
+    const intolerancesString = Object.values(selectedIntolerances).join(', ');
+    $('.intolerance-p').text(Object.values(selectedIntolerances).join(', '));
+    $('#intolerances-string').val(intolerancesString);
   });
+
 });

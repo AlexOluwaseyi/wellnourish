@@ -14,6 +14,7 @@ from flask_login import (LoginManager, current_user, login_user,
                          login_required, logout_user)
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
+import json
 
 
 app = Flask(__name__)
@@ -120,10 +121,13 @@ def complete_profile(user_id):
         current_user.first_name = request.form['first_name']
         current_user.last_name = request.form['last_name']
         current_user.gender = request.form['gender']
-        intolerances_list = request.form.getlist('selectedIntolerances')
-        diets_list = request.form.getlist('selectedDiets')
-        current_user.intolerances = list(intolerances_list.value())
-        current_user.diets = list(diets_list.values())
+
+        intolerances_list = request.form.get('intolerances_string').split(', ')
+        diets_list = request.form.get('diets_string').split(', ')
+
+        current_user.intolerances = json.dumps(intolerances_list)
+        current_user.diets = json.dumps(diets_list)
+
         # Create a new user and save it to the database here
         storage.save()
         # Redirect to profile setup page
@@ -138,8 +142,9 @@ def resetpass():
     return render_template('reset_password.html', title="Reset Password")
 
 
-@app.route('/profile')
-def profile():
+@app.route('/profile/<user_id>')
+def profile(user_id):
+    current_user = storage.get(User, user_id)
     return render_template('index.html', user=current_user)
 
 

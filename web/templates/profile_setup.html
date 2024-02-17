@@ -12,30 +12,35 @@
                 <input class="text w3lpass" type="text" name="gender" placeholder="Gender">
 
                 <div class="dropdown">
-                    <label for="intolerance-dropdown">Intolerances</label><h4 class="intolerance-h4">&nbsp;</h4>
-                    <img class="caret-img" id="caret-intolerances"src="../static/images/icons/caret-down.svg">
-                    <div class="dropdown-container" id="intolerance-dropdown">
-                        {% for intolerance in intolerances %}
-                        <div class="checkbox-row">
-                          <input type="checkbox" data-id="intolerance_{{ loop.index }}" name="intolerance" data-value="{{ intolerance }}">
-                          <label class="drpdwn" for="intolerance_{{ loop.index }}">{{ intolerance }}</label>
-                        </div>
-                      {% endfor %}
-                    </div>
+                  <label for="intolerance-dropdown">Intolerances</label>
+                  <p class="intolerance-p" id="intolerance-text">&nbsp;</p>
+                  <img class="caret-img" id="caret-intolerances"src="../static/images/icons/caret-down.svg">
+                  <div class="dropdown-container" id="intolerance-dropdown">
+                      {% for intolerance in intolerances %}
+                      <div class="checkbox-row">
+                        <input type="checkbox" data-id="intolerance_{{ loop.index }}" name="intolerance" data-value="{{ intolerance }}">
+                        <label class="drpdwn" for="intolerance_{{ loop.index }}">{{ intolerance }}</label>
+                      </div>
+                    {% endfor %}
                   </div>
+                </div>
+                <input type="hidden" name="intolerances_string" id="intolerances-string">
 
-                  <div class="dropdown">
-                    <label for="diet-dropdown">Diets:</label><h4 class="diet-h4">&nbsp;</h4>
-                    <img class="caret-img" id="caret-diets" src="../static/images/icons/caret-down.svg">
-                    <div class="dropdown-container" id="diet-dropdown">
-                        {% for diet in diets %}
-                        <div class="checkbox-row">
-                          <input type="checkbox" data-id="diet_{{ loop.index }}" name="diet" data-value="{{ diet }}">
-                          <label class="drpdwn" for="diet_{{ loop.index }}">{{ diet }}</label>
-                        </div>
-                      {% endfor %}
-                    </div>
+                <div class="dropdown">
+                  <label for="diet-dropdown">Diets:</label>
+                  <p class="diet-p" id="diet-text">&nbsp;</p>
+                  <img class="caret-img" id="caret-diets" src="../static/images/icons/caret-down.svg">
+                  <div class="dropdown-container" id="diet-dropdown">
+                      {% for diet in diets %}
+                      <div class="checkbox-row">
+                        <input type="checkbox" data-id="diet_{{ loop.index }}" name="diet" data-value="{{ diet }}">
+                        <label class="drpdwn" for="diet_{{ loop.index }}">{{ diet }}</label>
+                      </div>
+                    {% endfor %}
                   </div>
+                </div>
+                <input type="hidden" name="diets_string" id="diets-string">
+
                 <input type="submit" value="SUBMIT">
             </form>
         </div>
