@@ -17,9 +17,9 @@ from sqlalchemy.exc import IntegrityError
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
-app.config['SECRET_KEY'] = 'thisisasecretkey'
-db = SQLAlchemy(app)
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
+#app.config['SECRET_KEY'] = 'thisisasecretkey'
+#db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -50,6 +50,11 @@ def load_user(user_id):
 def index():
     """WellNourish Index Route"""
     return render_template("index.html", title="Home")
+
+@app.route("/landing_page", strict_slashes=False)
+def landing_page():
+    """WellNourish Index Route"""
+    return render_template("landing_page.html", title="Landing")
 
 
 @app.route("/about", strict_slashes=False)
