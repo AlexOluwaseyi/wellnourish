@@ -51,6 +51,16 @@ class User(BaseModel, Base, UserMixin):
 
     '''
     def get_id_by_username(self, username):
+        """Get the user's ID based on their username
+        from models import storage
+        for user in storage.all():
+            if user.username == username:
+                return user.id
+        return None."""
+        user = self.query.filter_by(username=username).first()
+        return user.id if user else None
+
+    def get_id_by_username(self, username):
         """Gets the user's ID based on their username."""
         from models import storage
         user = storage.get_username(User, username)

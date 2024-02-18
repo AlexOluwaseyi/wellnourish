@@ -7,7 +7,6 @@ This is also the entry point of the application
 """
 
 from models import storage
-from models.user import User
 from flask import (Flask, flash, render_template, session,
                    redirect, url_for, request, abort, flash)
 from flask_login import (LoginManager, current_user, login_user,
@@ -15,6 +14,8 @@ from flask_login import (LoginManager, current_user, login_user,
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 import json
+from models.user import User
+from time import sleep
 
 
 app = Flask(__name__)
@@ -79,9 +80,16 @@ def logout():
 @app.route("/login", strict_slashes=False, methods=['GET', 'POST'])
 def login():
     """WellNourish User Login Route"""
+    print("Hello Login page")
+    print(request.method)
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        print(f"Username is {username}")
+        sleep(10)
+        print(f"Password is {password}")
+        sleep(10)
+        user_id = User.get_id_by_username(username)
         user = storage.get(User, user_id)
         if user.username and user.check_password(password):
             login_user(user)
@@ -141,7 +149,7 @@ def complete_profile(user_id):
         # Create a new user and save it to the database here
         storage.save()
         # Redirect to profile setup page
-        return redirect(url_for('profile'))
+        return redirect(url_for('profile', user_id=current_user.id))
     return render_template('profile_setup.html', title="Complete Profile",
                            diets=diets, intolerances=intolerances)
 
@@ -152,7 +160,7 @@ def resetpass():
     return render_template('reset_password.html', title="Reset Password")
 
 
-@app.route('/profile/<user_id>')
+@app.route('/profile/<user_id>', methods=['GET', 'POST'])
 def profile(user_id):
     current_user = storage.get(User, user_id)
     return render_template('index.html', user=current_user)
