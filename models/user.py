@@ -24,9 +24,9 @@ class User(BaseModel, Base, UserMixin):
     first_name = Column(String(128))
     last_name = Column(String(128))
     email = Column(String(128), nullable=False, unique=True)
-    gender = Column(String(8), nullable=True)
     username = Column(String(128), nullable=False, unique=True)
     password = Column(String(128), nullable=False)
+    gender = Column(String(8), nullable=True)
     diets = Column(String(128))
     intolerances = Column(String(128))
 
@@ -46,8 +46,19 @@ class User(BaseModel, Base, UserMixin):
         return self.username
 
     def get_id(self):
-        """Gets the user's username"""
+        """Gets the user's id"""
         return self.id
+
+    '''
+    def get_id_by_username(self, username):
+        """Gets the user's ID based on their username."""
+        from models import storage
+        user = storage.get_username(User, username)
+        if user:
+            return user.id
+        else:
+            return None
+    '''
 
     def get_email(self):
         """Gets the user's username"""

@@ -18,9 +18,9 @@ import json
 
 
 app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
-#app.config['SECRET_KEY'] = 'thisisasecretkey'
-#db = SQLAlchemy(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
+app.config['SECRET_KEY'] = 'thisisasecretkey'
+# db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -56,6 +56,7 @@ def index():
     return render_template("index.html", title="Home",
                            diets=diets, intolerances=intolerances)
 
+
 @app.route("/landing_page", strict_slashes=False)
 def landing_page():
     """WellNourish Index Route"""
@@ -81,7 +82,7 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        user = storage.get(User, user)
+        user = storage.get(User, user_id)
         if user.username and user.check_password(password):
             login_user(user)
             return redirect(url_for('index'))

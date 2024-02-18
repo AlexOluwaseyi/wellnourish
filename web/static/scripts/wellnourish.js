@@ -125,6 +125,10 @@ $(document).ready(() => {
       return false; // Prevent form submission
     }
 
+    setTimeout(function() {
+      $('.alert').alert('close');
+    }, 5000);
+
     return true; // Allow form submission if passwords match
   }
 
@@ -135,6 +139,8 @@ $(document).ready(() => {
     }
   });
 
+  $("#flash-message").show().delay(3000).fadeOut(400, "linear");
+  
   const selectedDiets = {};
   const selectedIntolerances = {};
 

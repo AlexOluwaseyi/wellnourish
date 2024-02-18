@@ -275,6 +275,15 @@ input.checkbox:checked:after {
   background-size: auto 100%;
 }
 
+.wrapper-complete {
+  position: relative;
+  overflow: hidden;
+  background-image: url("../images/pexels-lumn-1410235.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+}
+
 .wrapper-reset {
   position: relative;
   overflow: hidden;
@@ -510,7 +519,7 @@ input.checkbox:checked:after {
   }
 
   .main-w3layouts {
-    padding: 2em 0 1em;
+    /* padding: 2em 0 1em; */
     background-size: auto 100% !important;
   }
 }
@@ -957,7 +966,7 @@ label {
 }
 
 .flash h1 {
-  font-size: 1.9em;
+  font-size: 1.4em;
   font-weight: 300;
 }
 

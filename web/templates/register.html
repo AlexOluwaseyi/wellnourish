@@ -3,7 +3,7 @@
 <div class="main-w3layouts wrapper-register">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            <div class="flash">
+            <div class="flash" id="flash-message">
                 {% for mesg in get_flashed_messages() %}
                     <h1>{{ mesg }}</h1>
                 {% endfor %}
@@ -21,7 +21,7 @@
                 <div class="wthree-text">
                     <label class="anim">
                         <input type="checkbox" class="checkbox" required="">
-                        <span>I Agree To The <a href="#0" class="tc">Terms & Conditions</a></span>
+                        <span>I agree to the <a href="#0" class="tc">Terms & Conditions</a></span>
                     </label>
                     <div class="clear"> </div>
                 </div>
