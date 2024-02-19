@@ -970,6 +970,13 @@ label {
   font-weight: 300;
 }
 
+.flash h5 {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+}
+
 p.intolerance-p, 
 p.diet-p {
   margin: 0;

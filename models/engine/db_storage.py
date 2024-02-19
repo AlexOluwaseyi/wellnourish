@@ -2,12 +2,13 @@
 """
 Contains the class DBStorage
 """
-import os
-import models
-from models.base_model import BaseModel, Base
+
+from models.base_model import Base, BaseModel
 from models.user import User
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+import models
+import os
 
 
 class DBStorage:
@@ -24,6 +25,14 @@ class DBStorage:
             Base.metadata.drop_all(self.__engine)
         else:
             self.__engine = create_engine("sqlite:///wellnourish.db")
+        
+        Session = sessionmaker(bind=self.__engine)
+        self.__session = Session()
+
+    @property
+    def session(self):
+        """Returns the current session"""
+        return self.__session
 
     def all(self, cls=None):
         """Returns object dictionary of the data in database"""

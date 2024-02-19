@@ -115,7 +115,7 @@ $(document).ready(() => {
   });
 
 
-  // Password Validation Code
+  // Password Validation Code on registration
   function validatePasswords () {
     const passwordInput = $('#password');
     const confirmPasswordInput = $('#confirmPassword');
@@ -139,7 +139,24 @@ $(document).ready(() => {
     }
   });
 
-  $("#flash-message").show().delay(3000).fadeOut(400, "linear");
+  $("#flash-message").show().delay(3000).fadeOut(400, "linear", function() {
+    // Check if the flash message is still visible
+    if ($(this).is(":visible")) {
+        // Flash message is still visible, prevent form submission
+        $("form").submit(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+        });
+    }
+  });
+
+  // $("#flash-message").show().delay(3000).fadeOut(400, "linear", function() {
+  //   // Flash message is still visible, prevent form submission
+  //   $("form").submit(function(event) {
+  //       event.preventDefault(); // Prevent the default form submission
+  //   });
+  // });
+
+  // $("#flash-message").show().delay(3000).fadeOut(400, "linear")
   
   const selectedDiets = {};
   const selectedIntolerances = {};
