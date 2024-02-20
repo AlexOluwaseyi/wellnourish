@@ -1,0 +1,157 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p hidden class="hidden-text">{{ recipe_id }}</p>
+<div class="recipe_container">
+  <div class="container_row recipe_title">
+    <div class="col-xs-12">
+      <p></p>
+    </div>
+  </div>
+
+  <div class="container_row">
+    <div class="col-xs-2"></div>
+
+    <div class="col-xs-7">
+      <div class="recipe_img"></div>
+      <div class="recipe_img_credits">
+	<p>
+	  <i class="fa fa-camera" aria-hidden="true"></i>
+	  <span>: <a>CreditsText</a></span>
+	</p>
+      </div>
+    </div>
+
+    <div class="col-xs-2 recipe-tags-col">
+      <div class="recipe-tags">
+	<div class="healthy-tag">
+	  <div class="healthy-img"></div>
+	  <p>Healthy</p>
+	</div>
+
+	<div class="vegetarian-tag">
+	  <div class="vegetarian-img"></div>
+	  <p>Vegetarian</p>
+	</div>
+
+	<div class="gluten-free-tag">
+	  <div class="gluten-free-img"></div>
+	  <p>Gluten Free</p>
+	</div>
+
+	<div class="dairy-free-tag">
+	  <div class="dairy-free-img"></div>
+	  <p>Dairy Free</p>
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container_row recipe_summary">
+    <div class="col-xs-12">
+      <p>
+	You can never have too many main course recipes, so give Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs a try.
+      </p>
+    </div>
+  </div>
+
+  <div class="container_row recipe_ingredients">
+    <div class="col-xs-12">
+      <h5>Ingredients</h5>
+      <div class="ingredient_option">
+	<div class="ingr_display">
+	  <div class="grid_dis" id="grid_dis">Grid</div>
+	  <div class="list_dis" id="list_dis">List</div>
+	</div>
+	<div class="ingr_measurement">
+	  <div class="metric_ingr">Metric</div>
+	  <div class="us_ingr">US</div>
+	</div>
+      </div>
+
+      <div class="ingredient_details">
+	<div class="ing_grid" id="ing_grid">
+
+	</div>
+
+	<div class="ing_list" id="ing_list">
+	</div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div class="container_row recipe_equipments">
+    <div class="col-xs-12">
+      <h5>Equipments</h5>
+      <div class="equipment_option">
+	<div class="ingr_display">
+	  <div class="grid_dis" id="e_grid_dis">Grid</div>
+	  <div class="list_dis" id="e_list_dis">List</div>
+	</div>
+      </div>
+
+      <div class="equipment_details">
+	<div class="eq_grid" id="eq_grid">
+	  <div class="eq_card">
+	    <div class="eq_amount_metric">15 ounce</div>
+	    <div class="eq_image"></div>
+	    <div class="eq_name">canned black beans</div>
+	  </div>
+
+	  <div class="eq_card">
+	    <div class="eq_amount_metric">15 ounce</div>
+	    <div class="eq_image"></div>
+	    <div class="eq_name">canned black beans</div>
+	  </div>
+
+	  <div class="eq_card">
+	    <div class="eq_amount_metric">15 ounce</div>
+	    <div class="eq_image"></div>
+	    <div class="eq_name">canned black beans</div>
+	  </div>
+	</div>
+
+	<div class="eq_list" id="eq_list">
+	  <div class="eq_slot">
+	    <div class="eq_image"></div>
+	    <div class="eq_slot_amount_metric">15 ounce</div>
+	    <div class="eq_slot_name">canned black beans</div>
+	  </div>
+
+	  <div class="eq_slot">
+	    <div class="eq_image"></div>
+	    <div class="eq_slot_amount_metric">15 ounce</div>
+	    <div class="eq_slot_name">canned black beans</div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <div class="container_row recipe_instructions">
+    <div class="col-xs-12">
+      <h5>Instructions</h5>
+      <div>
+	<p>Read the detailed instructions on <a>blogspot.com</a></p>
+      </div>
+
+      <div class="detailed_instructions">
+	<ol>
+	</ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="container_row recipe_nutrition_info">
+    <div class="col-xs-12">
+    </div>
+  </div>
+
+  <div class="container_row recipe_related">
+    <div class="col-xs-12">
+    </div>
+  </div>
+
+</div>
+{% endblock %}

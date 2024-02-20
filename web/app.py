@@ -16,6 +16,7 @@ from sqlalchemy.exc import IntegrityError
 import json
 from models.user import User
 from time import sleep
+import requests
 
 
 app = Flask(__name__)
@@ -158,6 +159,15 @@ def complete_profile(user_id):
 def resetpass():
     """WellNourish Profile Setup Route"""
     return render_template('reset_password.html', title="Reset Password")
+
+
+@app.route('/recipes/<recipe_id>', methods=['GET'], strict_slashes=False)
+def recipe_profile(recipe_id):
+    """WellNourish Recipe Details Route"""
+    title = "Recipe Details"
+
+    return render_template('recipe_detail.html', title=title,
+                           recipe_id=recipe_id)
 
 
 @app.route('/profile/<user_id>', methods=['GET', 'POST'])
