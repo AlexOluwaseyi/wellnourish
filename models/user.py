@@ -4,13 +4,12 @@ User Model for all app users
 Inherits from BaseModel
 """
 
-from models.base_model import BaseModel, Base
-from uuid import uuid4
-from sqlalchemy.dialects.postgresql import UUID
-from flask_bcrypt import Bcrypt
 from flask import session
-from sqlalchemy import Column, String
+from flask_bcrypt import Bcrypt
 from flask_login import UserMixin
+from models.base_model import Base, BaseModel
+from sqlalchemy import Column, String
+
 
 bcrypt = Bcrypt()
 
@@ -18,6 +17,8 @@ bcrypt = Bcrypt()
 class User(BaseModel, Base, UserMixin):
     """
     User class model definition
+
+    Inherits from BaseModel, Base and UserMixin
     """
     __tablename__ = "users"
 
@@ -49,27 +50,6 @@ class User(BaseModel, Base, UserMixin):
         """Gets the user's id"""
         return self.id
 
-    '''
-    def get_id_by_username(self, username):
-        """Get the user's ID based on their username
-        from models import storage
-        for user in storage.all():
-            if user.username == username:
-                return user.id
-        return None."""
-        user = self.query.filter_by(username=username).first()
-        return user.id if user else None
-
-    def get_id_by_username(self, username):
-        """Gets the user's ID based on their username."""
-        from models import storage
-        user = storage.get_username(User, username)
-        if user:
-            return user.id
-        else:
-            return None
-    '''
-
     def get_email(self):
         """Gets the user's username"""
         return self.email
@@ -83,7 +63,7 @@ class User(BaseModel, Base, UserMixin):
         pass
 
     def set_password(self, password):
-        self.password_hash = bcrypt.hash(password)
+        self.password = bcrypt.generate_password_hash(password)
 
     def check_password(self, password):
         return bcrypt.check_password_hash(self.password, password)

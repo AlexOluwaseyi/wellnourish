@@ -86,17 +86,16 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        print(f"Username is {username}")
-        sleep(10)
-        print(f"Password is {password}")
-        sleep(10)
-        user_id = User.get_id_by_username(username)
-        user = storage.get(User, user_id)
-        if user.username and user.check_password(password):
-            login_user(user)
-            return redirect(url_for('index'))
+        user = storage.session.query(User).filter_by(username=username).first()
+        if user:
+            if user.username and user.check_password(password):
+                user_id = user.id
+                login_user(user)
+                return redirect(url_for('profile', user_id=user_id))
+            else:
+                flash('Password incorrect!')
         else:
-            flash('Invalid username or password')
+            flash("Account does not exist, sign up now.")
     return render_template("login.html", title="Login")
 
 
@@ -171,9 +170,18 @@ def recipe_profile(recipe_id):
 
 
 @app.route('/profile/<user_id>', methods=['GET', 'POST'])
+@login_required
 def profile(user_id):
     current_user = storage.get(User, user_id)
-    return render_template('index.html', user=current_user)
+    # return render_template('index.html', user=current_user)
+    if current_user.is_authenticated:
+        if current_user.id == user_id:
+            current_user = storage.get(User, user_id)
+            return render_template('index.html', user=current_user)
+        else:
+            return "Unauthorized", 401  # Return unauthorized status code if user_id doesn't match current user's id
+    else:
+        return "Unauthorized", 401  # Return unauthorized status code if user is not logged in
 
 
 @app.teardown_appcontext

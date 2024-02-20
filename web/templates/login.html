@@ -9,9 +9,19 @@
             <form action="#" method="post">
                 <input class="text" type="text" name="username" placeholder="Username or email" required="">
                 <input class="text w3lpass" type="password" name="password" placeholder="Password" required="">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash" id="flash-message">
+                        {% for mesg in get_flashed_messages() %}
+                            <h5>{{ mesg }}</h5>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
                 <input type="submit" value="LOGIN">
             </form>
             <p>Forgotten Password? Reset <a href="/resetpassword"> here!</a></p>
+            <p>Don't have an account yet? Create one <a href="/register"> here!</a></p>
         </div>
 </div>
 {% endblock content %}
