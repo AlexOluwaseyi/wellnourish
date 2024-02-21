@@ -85,9 +85,14 @@
       </header>
     </div>
 
+    {% if title == "Home" %}
+    <section class="section-home">
+    {% else %}
     <section>
+    {% endif %}
       {% block content %}{% endblock %}
     </section>
+
 
     <footer class="svelte-1ozytz">
       <div class="container svelte-1ozytz">

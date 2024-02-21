@@ -34,3 +34,7 @@
     background-color: #ff0000;
     text-align: justify;
 }
+
+.section-home {
+    min-height: 100vh;
+}
