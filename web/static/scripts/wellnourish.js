@@ -9,7 +9,6 @@ $(document).ready(() => {
   // Get the popular recipes
   $.get('http://0.0.0.0:5001/api/v1/recipes', function (data) {
     const len = data.length;
-    console.log(data);
     for (const recipe of data) {
       if (recipe.spoonacularScore >= 50) {
         const ingrList = [];
@@ -18,7 +17,7 @@ $(document).ready(() => {
         }
 
         $('.result-count h4').text(`Popular Recipes (${len})`);
-        recipeTile = `<li id=${recipe.id}>
+        recipeTile = `<a href="/recipes/${recipe.id}"><li id=${recipe.id}>
             <div class="list-img"></div>
             <div class="list-title">
             <h3>${recipe.title}</h3>
@@ -26,7 +25,7 @@ $(document).ready(() => {
             <p><b>Health Score:</b> ${recipe.healthScore}% </p>
             <p><b>Rating:</b> ${recipe.spoonacularScore}%</p>
             </div>
-            </li>`;
+            </li></a>`;
         $('ul.recipes').append(recipeTile);
         $(`#${recipe.id} .list-img`).css('background-image', `url(${recipe.image})`);
       }
@@ -59,7 +58,7 @@ $(document).ready(() => {
 	  delete selectedFilters[filterId];
       }
 
-      console.log(Object.values(selectedFilters).join(', '));
+      /*console.log(Object.values(selectedFilters).join(', '));*/
   });
 
   // Returns search result
@@ -68,7 +67,6 @@ $(document).ready(() => {
     const ingrs = $('.search-box input').val();
     $.get(`http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}`, function (recipe) {
       const len = recipe.length;
-      console.log(recipe);
       for (let i = 0; i < len; i++) {
         const ingrList = [];
         /* for (let ingr of recipe[i].usedIngredients) {
@@ -78,13 +76,13 @@ $(document).ready(() => {
           ingrList.push(ingr.name);
         }
         $('.result-count h4').text(`Results (${len})`);
-        recipeTile = `<li id=${recipe[i].id}>
+        recipeTile = `<a href="/recipes/${recipe[i].id}"><li id=${recipe[i].id}>
         <div class="list-img"></div>
         <div class="list-title">
         <h3>${recipe[i].title}</h3>
         <p><b>Missing Ingredients:</b> ${Object.values(ingrList).join(', ')}</p>
         </div>
-        </li>`;
+        </li></a>`;
         $('ul.recipes').append(recipeTile);
         $(`#${recipe[i].id} .list-img`).css('background-image', `url(${recipe[i].image})`);
       }

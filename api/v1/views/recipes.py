@@ -81,5 +81,7 @@ def get_recipes_by_id(recipe_id):
         if response.status_code == 200:
             recipes = response.json()
             return recipes
+        else:
+            return jsonify({"error": "No recipe information"})
     except requests.exceptions.RequestException:
-        return None
+        return jsonify({"error": "No recipe information"})
