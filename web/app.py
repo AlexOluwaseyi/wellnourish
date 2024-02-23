@@ -52,10 +52,18 @@ def load_user(user_id):
 @app.route("/", strict_slashes=False)
 def index():
     """WellNourish Index Route"""
+    if "_user_id" in session:
+        u_diets = session['diet']
+        u_intolerances = session['intolerances']
+    else:
+        u_diets = ""
+        u_intolerances = ""
+    diet = [x.lower() for x in diets]
+    intolerance = [x.lower() for x in intolerances]
 
-    return render_template("index.html", title="Home",
-                           diets=[x.lower() for x in diets],
-                           intolerances=[x.lower() for x in intolerances])
+    return render_template("index.html", title="Home", diets=diet,
+                           intolerances=intolerance, u_diets=u_diets,
+                           u_intolerances=u_intolerances)
 
 
 @app.route("/landing_page", strict_slashes=False)
@@ -90,6 +98,9 @@ def login():
             if user.username and user.check_password(password):
                 user_id = user.id
                 login_user(user)
+                session['diet'] = ' '.join([x.lower() for x in json.loads(user.diets)]).replace(' ', ',')
+                session['intolerances'] =' '.join([x.lower() for x in json.loads(user.intolerances)]).replace(' ', ',')
+                print(session)
                 return redirect(url_for('profile', user_id=user_id))
             else:
                 flash('Password incorrect!')

@@ -29,6 +29,7 @@ $(document).ready(() => {
         $('ul.recipes').append(recipeTile);
         $(`#${recipe.id} .list-img`).css('background-image', `url(${recipe.image})`);
       }
+	$('.nav-button').addClass('hide_section');
     }
   });
 
@@ -78,7 +79,24 @@ $(document).ready(() => {
   $('.search-button').on('click', function () {
     $('.result-tiles ul').empty();
     const ingrs = $('.search-box input').val();
-    $.get(`http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}`, function (recipe) {
+    const userDiet = $('#user_diets').text();
+    const userIntol = $('#user_intolerances').text();
+    let sUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}`;
+
+    if (userDiet && userIntol) {
+	sUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/${userDiet}/${userIntol}/0`;
+	console.log(sUrl);
+    }
+    else if (userDiet) {
+	sUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/d/${userDiet}/0`;
+	console.log(sUrl);
+    }
+    else if (userIntol) {
+	sUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/t/${userIntol}/0`;
+	console.log(sUrl);
+    }
+
+    $.get(sUrl, function (recipe) {
 	//const len = recipe.totalResults;
 	const len = recipe.results.length;
 	console.log(recipe);
