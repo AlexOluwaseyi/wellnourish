@@ -11,6 +11,8 @@ from datetime import datetime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 import models
+from flask import session
+
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 Base = declarative_base()
@@ -41,7 +43,7 @@ class BaseModel:
             if kwargs.get("id", None) is None:
                 self.id = str(uuid4())
         else:
-            self.id =str(uuid4())
+            self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
 
