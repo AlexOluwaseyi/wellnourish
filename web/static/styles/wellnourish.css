@@ -46,7 +46,7 @@
 }
 
 .fa {
-    font: normal normal normal 20px/1 FontAwesome !important;
+    font: normal normal normal 18px/1 FontAwesome !important;
 }
 
 .filter-options {
@@ -146,6 +146,29 @@
     background: #FF0000;
     color: #FFFF;
     border-style: None;
+}
+
+.filter-button,
+.nav-button {
+    margin-top: 10px;
+    font-size: 15px;
+    background: #ff0000;
+    color: #FFFF;
+    height: 40px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.result-nav {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-button {
+    width: 10%;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
 }
 
 @media only screen and (max-width: 920px)

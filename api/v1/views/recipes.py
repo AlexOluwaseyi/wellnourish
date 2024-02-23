@@ -35,19 +35,39 @@ def get_random_recipes():
 
 
 @api_views.route('/recipes/find_by_ingr/<ingredients>', methods=['GET'], strict_slashes=False)
-def get_recipes_by_ingredient(ingredients):
+@api_views.route('/recipes/find_by_ingr/<ingredients>/<offset>', methods=['GET'], strict_slashes=False)
+@api_views.route('/recipes/find_by_ingr/<ingredients>/d/<diets>/<offset>', methods=['GET'], strict_slashes=False)
+@api_views.route('/recipes/find_by_ingr/<ingredients>/i/<intolerances>/<offset>', methods=['GET'], strict_slashes=False)
+@api_views.route('/recipes/find_by_ingr/<ingredients>/<diets>/<intolerances>/<offset>', methods=['GET'], strict_slashes=False)
+def get_recipes_by_ingredient(ingredients, offset=0, diets=None, intolerances=None):
     """
     Retrieves a random list of recipes
     """
     #url = f"https://api.spoonacular.com/recipes/findByIngredients"
-    url = f"https://api.spoonacular.com/recipes/findByIngredients"
+    url = f"https://api.spoonacular.com/recipes/complexSearch"
+
+    ingredients = ingredients.replace(", ", ",").strip()
 
     params = {
         "apiKey": apiKey,
-        "ingredients": ingredients,
-        "number": 100
+        "includeIngredients": ingredients,
+        "addRecipeInformation": True,
+        "fillIngredients": True,
+        "number": 20,
+        "offset": 0
     }
 
+    print(f"Diets: {diets}")
+    if diets:
+        params["diet"] = diets
+
+    print(f"Intolerance: {intolerances}")
+    if intolerances:
+        params["intolerances"] = intolerances
+
+    params["offset"] = offset
+
+    print(params)
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
     }

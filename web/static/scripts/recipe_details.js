@@ -9,6 +9,25 @@ $(document).ready(function (){
 
 	$('.recipe_summary p').html(recipe.summary);
 
+	if (recipe.veryHealthy === false) {
+	    $('.healthy-tag').addClass('hide_section');
+	}
+
+	if (recipe.vegetarian === false) {
+	    $('.vegetarian-tag').addClass('hide_section');
+	}
+
+	if (recipe.vegan === false) {
+	    $('.vegetarian-tag').addClass('hide_section');
+	}
+
+	if (recipe.glutenFree === false) {
+	    $('.gluten-free-tag').addClass('hide_section');
+	}
+
+	if (recipe.dairyFree === false) {
+	    $('.dairy-free-tag').addClass('hide_section');
+	}
 
 	for (const ingr of recipe.extendedIngredients) {
 	    let ingrGrid = `<div class="ing_card" id="${ingr.id}">

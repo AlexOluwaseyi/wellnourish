@@ -46,19 +46,32 @@ $(document).ready(() => {
 	  });
   });**/
 
-  let selectedFilters = {};
-  $('.filter-options input[type="checkbox"]').on('change', function () {
+  let selectedDiet = {};
+  $('.filter-diet input[type="checkbox"]').on('change', function () {
       let filterOption = $(this);
       let filterId = filterOption.attr('id');
       let filterValue = filterOption.attr('value');
       if (filterOption.prop('checked')) {
-	  selectedFilters[filterId] = filterValue
+	  selectedDiet[filterId] = filterValue
       }
       else {
-	  delete selectedFilters[filterId];
+	  delete selectedDiet[filterId];
       }
 
       /*console.log(Object.values(selectedFilters).join(', '));*/
+  });
+
+  let selectedIntolerance = {};
+  $('.filter-intolerance input[type="checkbox"]').on('change', function () {
+      let filterOption = $(this);
+      let filterId = filterOption.attr('id');
+      let filterValue = filterOption.attr('value');
+      if (filterOption.prop('checked')) {
+	  selectedIntolerance[filterId] = filterValue
+      }
+      else {
+	  delete selectedIntolerance[filterId];
+      }
   });
 
   // Returns search result
@@ -66,27 +79,185 @@ $(document).ready(() => {
     $('.result-tiles ul').empty();
     const ingrs = $('.search-box input').val();
     $.get(`http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}`, function (recipe) {
-      const len = recipe.length;
-      for (let i = 0; i < len; i++) {
+	//const len = recipe.totalResults;
+	const len = recipe.results.length;
+	console.log(recipe);
+      for (let i = 0; i < recipe.number; i++) {
         const ingrList = [];
         /* for (let ingr of recipe[i].usedIngredients) {
             ingrList.push(ingr.name);
         } */
-        for (const ingr of recipe[i].missedIngredients) {
+        for (const ingr of recipe.results[i].missedIngredients) {
           ingrList.push(ingr.name);
         }
         $('.result-count h4').text(`Results (${len})`);
-        recipeTile = `<a href="/recipes/${recipe[i].id}"><li id=${recipe[i].id}>
+        recipeTile = `<a href="/recipes/${recipe.results[i].id}"><li id=${recipe.results[i].id}>
         <div class="list-img"></div>
         <div class="list-title">
-        <h3>${recipe[i].title}</h3>
+        <h3>${recipe.results[i].title}</h3>
         <p><b>Missing Ingredients:</b> ${Object.values(ingrList).join(', ')}</p>
+        <p><b>Health Score:</b> ${recipe.results[i].healthScore}% </p>
+        <p><b>Rating:</b> ${recipe.results[i].spoonacularScore}%</p>
         </div>
         </li></a>`;
         $('ul.recipes').append(recipeTile);
-        $(`#${recipe[i].id} .list-img`).css('background-image', `url(${recipe[i].image})`);
+        $(`#${recipe.results[i].id} .list-img`).css('background-image', `url(${recipe.results[i].image})`);
+
+	if (recipe.offset == 0) {
+	    $('.nav-prev').addClass('hide_section');
+	}
+	else if (recipe.offset > recipe.totalResults) {
+	    $('.nav-button').addClass('hide_section');
+	}
       }
     });
+  });
+
+  // Filter search result
+  $('.filter-button').on('click', function () {
+    $('.result-tiles ul').empty();
+      const ingrs = $('.search-box input').val();
+      let searchUrl;
+
+      console.log(selectedDiet);
+      console.log(selectedIntolerance);
+
+      if (Object.values(selectedDiet).length != 0 && Object.values(selectedIntolerance).length != 0) {
+	  let sDiet = Object.values(selectedDiet).join(',');
+	  let sIntol = Object.values(selectedIntolerance).join(',');
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/${sDiet}/${sIntol}/0`;
+      }
+
+      else if (Object.values(selectedDiet).length != 0) {
+	  let sDiet = Object.values(selectedDiet).join(',');
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/d/${sDiet}/0`;
+      }
+
+      else if (Object.values(selectedIntolerance).length != 0) {
+	  let sIntol = Object.values(selectedIntolerance).join(',');
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/i/${sIntol}/0`;
+      }
+
+      else {
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/0`;
+      }
+
+    console.log(searchUrl);
+    $.get(searchUrl, function (recipe) {
+	//const len = recipe.totalResults;
+	const len = recipe.results.length;
+	console.log(recipe);
+      for (let i = 0; i < recipe.number; i++) {
+        const ingrList = [];
+        /* for (let ingr of recipe[i].usedIngredients) {
+            ingrList.push(ingr.name);
+        } */
+        for (const ingr of recipe.results[i].missedIngredients) {
+          ingrList.push(ingr.name);
+        }
+        $('.result-count h4').text(`Results (${len})`);
+        recipeTile = `<a href="/recipes/${recipe.results[i].id}"><li id=${recipe.results[i].id}>
+        <div class="list-img"></div>
+        <div class="list-title">
+        <h3>${recipe.results[i].title}</h3>
+        <p><b>Missing Ingredients:</b> ${Object.values(ingrList).join(', ')}</p>
+        <p><b>Health Score:</b> ${recipe.results[i].healthScore}% </p>
+        <p><b>Rating:</b> ${recipe.results[i].spoonacularScore}%</p>
+        </div>
+        </li></a>`;
+        $('ul.recipes').append(recipeTile);
+        $(`#${recipe.results[i].id} .list-img`).css('background-image', `url(${recipe.results[i].image})`);
+
+	if (recipe.offset == 0) {
+	    $('.nav-prev').addClass('hide_section');
+	}
+	else if (recipe.offset > recipe.totalResults) {
+	    $('.nav-button').addClass('hide_section');
+	}
+      }
+    });
+  });
+
+  // Next/Prev search result
+  $('.nav-button').on('click', function () {
+      $('.nav-prev').removeClass('hide_section');
+      $('.result-tiles ul').empty();
+      const ingrs = $('.search-box input').val();
+      let searchUrl;
+      let offset;
+
+      let btnNav = $(this);
+      let btnNavId = btnNav.attr('id');
+      let btnNavName = btnNav.attr('name');
+
+      if (btnNavName === "next") {
+	  offset = Number(btnNavId) + 19;
+      }
+      else {
+	  offset = Number(btnNavId) - 19;
+      }
+
+      console.log(selectedDiet);
+      console.log(selectedIntolerance);
+
+      if (Object.values(selectedDiet).length != 0 && Object.values(selectedIntolerance).length != 0) {
+	  let sDiet = Object.values(selectedDiet).join(',');
+	  let sIntol = Object.values(selectedIntolerance).join(',');
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/${sDiet}/${sIntol}/${offset}`;
+      }
+
+      else if (Object.values(selectedDiet).length != 0) {
+	  let sDiet = Object.values(selectedDiet).join(',');
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/d/${sDiet}/${offset}`;
+      }
+
+      else if (Object.values(selectedIntolerance).length != 0) {
+	  let sIntol = Object.values(selectedIntolerance).join(',');
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/i/${sIntol}/${offset}`;
+      }
+
+      else {
+	  searchUrl = `http://0.0.0.0:5001/api/v1/recipes/find_by_ingr/${ingrs}/${offset}`;
+      }
+
+    console.log(searchUrl);
+    $.get(searchUrl, function (recipe) {
+	const len = recipe.results.length;
+	console.log(recipe);
+      for (let i = 0; i < recipe.number; i++) {
+        const ingrList = [];
+        /* for (let ingr of recipe[i].usedIngredients) {
+            ingrList.push(ingr.name);
+        } */
+        for (const ingr of recipe.results[i].missedIngredients) {
+          ingrList.push(ingr.name);
+        }
+        $('.result-count h4').text(`Results (${len})`);
+        recipeTile = `<a href="/recipes/${recipe.results[i].id}"><li id=${recipe.results[i].id}>
+        <div class="list-img"></div>
+        <div class="list-title">
+        <h3>${recipe.results[i].title}</h3>
+        <p><b>Missing Ingredients:</b> ${Object.values(ingrList).join(', ')}</p>
+        <p><b>Health Score:</b> ${recipe.results[i].healthScore}% </p>
+        <p><b>Rating:</b> ${recipe.results[i].spoonacularScore}%</p>
+        </div>
+        </li></a>`;
+        $('ul.recipes').append(recipeTile);
+        $(`#${recipe.results[i].id} .list-img`).css('background-image', `url(${recipe.results[i].image})`);
+
+	if (recipe.totalResults <= recipe.offset) {
+	   $('.nav-next').addClass('hide_section');
+	}
+	else if (recipe.offset > recipe.totalResults) {
+	    $('.nav-button').addClass('hide_section');
+	}
+	else if (recipe.offset == 0) {
+	    $('.nav-prev').addClass('hide_section');
+	}
+      }
+    });
+
+    $('.nav-button').attr('id', offset);
   });
 
 

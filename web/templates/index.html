@@ -21,6 +21,8 @@
 	       <input type="checkbox" class="checkbox" id="diet_{{ loop.index }}" value="{{ diet }}">
 	       <label for="diet_{{ loop.index }}">{{ diet }}</label><br>
 	    {% endfor %}
+
+	    <button class="filter-button">Submit</button>
 	  </div>
 
 	  <div class="filter-intolerance">
@@ -30,13 +32,18 @@
 	       <label for="intolerance_{{ loop.index }}">{{ intolerance }}</label><br>
 	    {% endfor %}
 	  </div>
+
 	</div>
       </div>
     </div>
     <div class="result-tiles">
       <ul class="recipes">
-
       </ul>
+    </div>
+
+    <div class="result-nav">
+      <button class="nav-button nav-prev" name="prev" id="0">Prev</button>
+      <button class="nav-button nav-next" name="next" id="0" >Next</button>
     </div>
   </div>
 

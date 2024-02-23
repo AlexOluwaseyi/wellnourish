@@ -32,7 +32,7 @@ FUll list of diets and intolerances as specified by spoonacular
 Diets - https://spoonacular.com/food-api/docs#Diets
 Intolerances - https://spoonacular.com/food-api/docs#Intolerances
 """
-diets = ['Gluten Free', 'Ketogenic', 'Vegetarian',
+diets = ['Gluten-Free', 'Ketogenic', 'Vegetarian',
          'Lacto-Vegetarian', 'Ovo-Vegetarian',
          'Vegan', 'Pescetarian', 'Paleo', 'Primal',
          'Low FODMAP', 'Whole30']
@@ -52,11 +52,10 @@ def load_user(user_id):
 @app.route("/", strict_slashes=False)
 def index():
     """WellNourish Index Route"""
-    filters = ['vegetarian', 'vegan', 'glutenFree', 'diaryFree',
-               'veryHealthy', 'cheap', 'popular', 'lowFodmap']
 
     return render_template("index.html", title="Home",
-                           diets=diets, intolerances=intolerances)
+                           diets=[x.lower() for x in diets],
+                           intolerances=[x.lower() for x in intolerances])
 
 
 @app.route("/landing_page", strict_slashes=False)

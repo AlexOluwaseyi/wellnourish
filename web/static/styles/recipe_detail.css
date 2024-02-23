@@ -47,6 +47,7 @@
 
 .healthy-tag,
 .vegetarian-tag,
+.vegan-tag,
 .gluten-free-tag,
 .dairy-free-tag {
     display: flex;
@@ -55,6 +56,7 @@
 
 .healthy-img,
 .vegetarian-img,
+.vegan-img,
 .gluten-free-img,
 .dairy-free-img {
     height: 30px;
@@ -68,6 +70,10 @@
 }
 
 .vegetarian-img {
+    background-image: url("../images/recipe_icon/vegetarian.svg");
+}
+
+.vegan-img {
     background-image: url("../images/recipe_icon/vegetarian.svg");
 }
 
@@ -158,7 +164,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 20px;
-    margin-left: 20px;
+    flex-wrap: wrap;
 }
 
 .ing_card,
@@ -166,7 +172,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 10px;
+    padding: 10px 10px;
 }
 
 .ing_image,
