@@ -6,6 +6,7 @@ This is where all interactions with the web browser starts from
 This is also the entry point of the application
 """
 
+from creds import secretKey
 from models import storage
 from flask import (Flask, flash, render_template, session,
                    redirect, url_for, request, abort, flash)
@@ -21,7 +22,7 @@ import requests
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
-app.config['SECRET_KEY'] = 'thisisasecretkey'
+app.config['SECRET_KEY'] = secretKey
 # db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
