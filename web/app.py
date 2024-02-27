@@ -16,7 +16,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 import json
 from models.user import User
-from time import sleep
 import requests
 
 
@@ -89,8 +88,6 @@ def logout():
 @app.route("/login", strict_slashes=False, methods=['GET', 'POST'])
 def login():
     """WellNourish User Login Route"""
-    print("Hello Login page")
-    print(request.method)
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -101,7 +98,6 @@ def login():
                 login_user(user)
                 session['diet'] = ' '.join([x.lower() for x in json.loads(user.diets)]).replace(' ', ',')
                 session['intolerances'] =' '.join([x.lower() for x in json.loads(user.intolerances)]).replace(' ', ',')
-                print(session)
                 return redirect(url_for('profile', user_id=user_id))
             else:
                 flash('Password incorrect!')
