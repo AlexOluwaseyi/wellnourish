@@ -6,6 +6,7 @@ This is where all interactions with the web browser starts from
 This is also the entry point of the application
 """
 
+from creds import secretKey
 from models import storage
 from flask import (Flask, flash, render_template, session,
                    redirect, url_for, request, abort, flash)
@@ -15,13 +16,12 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 import json
 from models.user import User
-from time import sleep
 import requests
 
 
 app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
-app.config['SECRET_KEY'] = 'thisisasecretkey'
+app.config['SECRET_KEY'] = secretKey
 # db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -88,8 +88,6 @@ def logout():
 @app.route("/login", strict_slashes=False, methods=['GET', 'POST'])
 def login():
     """WellNourish User Login Route"""
-    print("Hello Login page")
-    print(request.method)
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -100,7 +98,6 @@ def login():
                 login_user(user)
                 session['diet'] = ' '.join([x.lower() for x in json.loads(user.diets)]).replace(' ', ',')
                 session['intolerances'] =' '.join([x.lower() for x in json.loads(user.intolerances)]).replace(' ', ',')
-                print(session)
                 return redirect(url_for('profile', user_id=user_id))
             else:
                 flash('Password incorrect!')
