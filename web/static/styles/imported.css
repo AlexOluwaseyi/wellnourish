@@ -1310,7 +1310,7 @@ data {
 
 body, html {
     margin: 0;
-    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .site.svelte-qlls6c {
