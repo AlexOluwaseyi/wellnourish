@@ -1308,10 +1308,10 @@ data {
     display: contents
 }
 
-body, html {
+/* body, html {
     margin: 0;
     overflow-x: hidden;
-}
+} */
 
 .site.svelte-qlls6c {
     display: flex;
