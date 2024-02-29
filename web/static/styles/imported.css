@@ -1128,9 +1128,9 @@ body {
     padding: 0;
 }
 
-a, .link {
+/* a, .link {
     color: #1769c2
-}
+} */
 
 a--plain, .link--plain {
     color: #2f2f2f
@@ -1308,10 +1308,10 @@ data {
     display: contents
 }
 
-/* body, html {
+body, html {
     margin: 0;
     overflow-x: hidden;
-} */
+}
 
 .site.svelte-qlls6c {
     display: flex;
