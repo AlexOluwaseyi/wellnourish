@@ -1,0 +1,128 @@
+.
+|-- README.md
+|-- __pycache__
+|   |-- creds.cpython-311.pyc
+|   `-- creds.cpython-312.pyc
+|-- api
+|   |-- __init__.py
+|   |-- __pycache__
+|   |   `-- __init__.cpython-311.pyc
+|   `-- v1
+|       |-- __init__.py
+|       |-- __pycache__
+|       |   |-- __init__.cpython-311.pyc
+|       |   `-- app.cpython-311.pyc
+|       |-- app.py
+|       `-- views
+|           |-- __init__.py
+|           |-- __pycache__
+|           |   |-- __init__.cpython-311.pyc
+|           |   |-- recipes.cpython-311.pyc
+|           |   `-- users.cpython-311.pyc
+|           |-- recipes.py
+|           `-- users.py
+|-- auto-pull.php
+|-- creds.py
+|-- instance
+|-- models
+|   |-- __init__.py
+|   |-- __pycache__
+|   |   |-- __init__.cpython-311.pyc
+|   |   |-- __init__.cpython-312.pyc
+|   |   |-- base_model.cpython-311.pyc
+|   |   |-- base_model.cpython-312.pyc
+|   |   |-- user.cpython-311.pyc
+|   |   `-- user.cpython-312.pyc
+|   |-- base_model.py
+|   |-- engine
+|   |   |-- __init__.py
+|   |   |-- __pycache__
+|   |   |   |-- __init__.cpython-311.pyc
+|   |   |   |-- __init__.cpython-312.pyc
+|   |   |   |-- db_storage.cpython-311.pyc
+|   |   |   `-- db_storage.cpython-312.pyc
+|   |   `-- db_storage.py
+|   `-- user.py
+|-- requirement.txt
+|-- tests
+|   |-- __init__.py
+|   |-- __pycache__
+|   |   `-- __init__.cpython-311.pyc
+|   `-- test_models
+|       |-- __init__.py
+|       |-- __pycache__
+|       |   |-- __init__.cpython-311.pyc
+|       |   |-- test_base_model.cpython-311.pyc
+|       |   `-- test_user.cpython-311.pyc
+|       |-- test_base_model.py
+|       |-- test_engine
+|       |   |-- __init__.py
+|       |   |-- __pycache__
+|       |   |   |-- __init__.cpython-311.pyc
+|       |   |   `-- test_db_storage.cpython-311.pyc
+|       |   `-- test_db_storage.py
+|       `-- test_user.py
+|-- tree.txt
+|-- web
+|   |-- __init__.py
+|   |-- __pycache__
+|   |   |-- __init__.cpython-311.pyc
+|   |   |-- __init__.cpython-312.pyc
+|   |   |-- app.cpython-311.pyc
+|   |   `-- app.cpython-312.pyc
+|   |-- app.py
+|   |-- instance
+|   |-- static
+|   |   |-- images
+|   |   |   |-- amoon-ra-n8vDuIpGb0c-unsplash.jpg
+|   |   |   |-- icons
+|   |   |   |   |-- android-chrome-192x192.png
+|   |   |   |   |-- android-chrome-512x512.png
+|   |   |   |   |-- apple-touch-icon.png
+|   |   |   |   |-- caret-down.svg
+|   |   |   |   |-- favicon-16x16.png
+|   |   |   |   |-- favicon-32x32.png
+|   |   |   |   |-- favicon.ico
+|   |   |   |   |-- logo.jpg
+|   |   |   |   `-- search-icon.svg
+|   |   |   |-- pexels-lumn-1410235.jpg
+|   |   |   |-- pexels-maarten-van-den-heuvel-2284166.jpg
+|   |   |   |-- pexels-rdne-stock-project-6129205.jpg
+|   |   |   |-- pexels-tran-nhu-tuan-14438786.jpg
+|   |   |   |-- recipe_icon
+|   |   |   |   |-- dairy-free.svg
+|   |   |   |   |-- gluten-free.svg
+|   |   |   |   |-- healthy.svg
+|   |   |   |   |-- ingredient.jpg
+|   |   |   |   `-- vegetarian.svg
+|   |   |   `-- site.webmanifest
+|   |   |-- scripts
+|   |   |   |-- recipe_details.js
+|   |   |   `-- wellnourish.js
+|   |   `-- styles
+|   |       |-- form.css
+|   |       |-- header.css
+|   |       |-- imported.css
+|   |       |-- landing.css
+|   |       |-- main.css
+|   |       |-- recipe_detail.css
+|   |       `-- wellnourish.css
+|   `-- templates
+|       |-- about.html
+|       |-- index - Copy.html
+|       |-- index.html
+|       |-- landing_page.html
+|       |-- layout.html
+|       |-- login.html
+|       |-- nothing
+|       |-- profile.html
+|       |-- profile_setup.html
+|       |-- recipe_detail.html
+|       |-- register.html
+|       |-- reset_password.html
+|       |-- reset_password_2.html
+|       |-- signup.html
+|       `-- wellnourish.code-workspace
+`-- wellnourish.db
+
+28 directories, 97 files

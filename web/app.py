@@ -17,9 +17,13 @@ from sqlalchemy.exc import IntegrityError
 import json
 from models.user import User
 import requests
+from flask_lambda import FlaskLambda
 
 
-app = Flask(__name__)
+app = FlaskLambda(__name__)
+
+
+# app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///wellnourish.db'
 app.config['SECRET_KEY'] = secretKey
 # db = SQLAlchemy(app)
